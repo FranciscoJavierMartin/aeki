@@ -7,7 +7,7 @@ export default function InputForm({
 }: InputFormProps) {
   return (
     <div className='relative mx-0 mb-7 mt-5 w-full'>
-      <div className='absolute flex items-center rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] focus-within:border-purple-500'>
+      <div className='absolute flex w-full items-center rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] focus-within:border-purple-500'>
         <input
           id={id}
           placeholder={placeholder}
