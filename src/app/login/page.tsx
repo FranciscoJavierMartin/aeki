@@ -1,12 +1,26 @@
 'use client';
 import { useFormState, useFormStatus } from 'react-dom';
 import InputForm from '@/components/InputForm';
-import { loginUser } from '@/actions/login-user';
 
 const initialState: LoginFormState<LoginFormFields> = {
   message: '',
   errors: {},
 };
+
+async function loginUser(
+  prev: LoginFormState<LoginFormFields>,
+  formData: FormData,
+) {
+  let message: string = '';
+  let errors: { [key in keyof LoginFormFields]?: string[] } = {};
+
+  console.log(prev);
+
+  return {
+    message,
+    errors,
+  };
+}
 
 export default function LoginPage() {
   const { pending } = useFormStatus();
