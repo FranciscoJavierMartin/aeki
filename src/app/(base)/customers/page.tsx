@@ -1,3 +1,12 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/Table';
+
 const customers = [
   {
     name: 'John Doe',
@@ -25,24 +34,24 @@ export default function CustomersPage() {
   return (
     <div>
       <h1>Customers</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>DNI</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>DNI</TableHead>
+            <TableHead>Email</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {customers.map((customer) => (
-            <tr key={customer.dni}>
-              <td>{customer.name}</td>
-              <td>{customer.dni}</td>
-              <td>{customer.email}</td>
-            </tr>
+            <TableRow key={customer.dni}>
+              <TableCell>{customer.name}</TableCell>
+              <TableCell>{customer.dni}</TableCell>
+              <TableCell>{customer.email}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }
