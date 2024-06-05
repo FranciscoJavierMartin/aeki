@@ -23,6 +23,13 @@ async function loginUser(
 
   try {
     if (validatedFields.success) {
+      fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify(validatedFields.data),
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch(() => console.log('Catch'));
     } else {
       errors = validatedFields.error?.flatten().fieldErrors;
     }
@@ -53,6 +60,7 @@ export default function LoginPage() {
             id='username'
             name='username'
             placeholder='Username'
+            defaultValue='John'
             errors={state.errors.username}
           />
           <InputForm
@@ -60,6 +68,7 @@ export default function LoginPage() {
             name='password'
             placeholder='Password'
             type='password'
+            defaultValue='Test'
             errors={state.errors.password}
           />
           <button
