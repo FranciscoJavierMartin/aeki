@@ -1,3 +1,12 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/Table';
+
 export default async function CustomerPage({
   params,
 }: {
@@ -10,6 +19,42 @@ export default async function CustomerPage({
   return (
     <div>
       <h1 className='text-2xl'>{customer.name}</h1>
+      <div className='grid w-full grid-cols-2 gap-2'>
+        <div>
+          <h3>Products</h3>
+          <Table>
+            <TableHeader>
+              <TableRow className='hover:bg-transparent'>
+                <TableHead>Product</TableHead>
+                <TableHead>Color</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>Table</TableCell>
+                <TableCell>White</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+        <div>
+          <h3>Budgets</h3>
+          <Table>
+            <TableHeader>
+              <TableRow className='hover:bg-transparent'>
+                <TableHead>Product</TableHead>
+                <TableHead>Color</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>Table</TableCell>
+                <TableCell>White</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }
