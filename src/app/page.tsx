@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <div className='flex h-[calc(100vh-64px)] items-center justify-center'>
+      <div className='flex h-[calc(100vh-64px)] items-center justify-center bg-blue-400'>
         <TypeEffect textCompleted={textCompleted} />
       </div>
     </div>

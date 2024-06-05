@@ -25,5 +25,5 @@ export default function TypeEffect({
     };
   }, []);
 
-  return <h1>{displayText}</h1>;
+  return <h1 className='text-center text-4xl text-white'>{displayText}</h1>;
 }
