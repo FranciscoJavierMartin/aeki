@@ -1,3 +1,7 @@
 export default function CustomerPage() {
-  return <h1>Customer</h1>;
+  return (
+    <div>
+      <h1>Customer page</h1>
+    </div>
+  );
 }

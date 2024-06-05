@@ -1,29 +1,12 @@
 import CustomersTable from '@/components/customers/CustomersTable';
 
-const customers = [
-  {
-    name: 'John Doe',
-    dni: '12345678A',
-    email: 'john@doe.com',
-  },
-  {
-    name: 'Jane Doe',
-    dni: '12345678B',
-    email: 'john@doe.com',
-  },
-  {
-    name: 'Isaac Clarke',
-    dni: '12345678C',
-    email: 'isaac@clarke.com',
-  },
-  {
-    name: 'Agatha Christie',
-    dni: '12345678D',
-    email: 'agatha@christie.com',
-  },
-];
+export default async function CustomersPage() {
+  const { customers } = await fetch('http://localhost:4230/api/customers').then(
+    (res) => res.json(),
+  );
 
-export default function CustomersPage() {
+  console.log(customers);
+
   return (
     <div>
       <h1>Customers</h1>
