@@ -1,4 +1,6 @@
-interface InputFormProps extends Partial<HTMLInputElement> {}
+import { InputHTMLAttributes } from 'react';
+
+interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export default function InputForm({
   id,
