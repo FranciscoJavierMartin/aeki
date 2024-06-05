@@ -45,6 +45,7 @@ export default function Header() {
         {navLinks.map((navLink) => (
           <Link
             href={navLink.href}
+            key={navLink.href}
             className='p-3 text-white hover:bg-black hover:bg-opacity-30'
           >
             {navLink.text}
