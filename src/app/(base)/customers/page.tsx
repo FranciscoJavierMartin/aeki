@@ -5,8 +5,6 @@ export default async function CustomersPage() {
     (res) => res.json(),
   );
 
-  console.log(customers);
-
   return (
     <div>
       <h1>Customers</h1>
