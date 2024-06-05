@@ -22,7 +22,7 @@ const navLinks = [
 export default function Home() {
   return (
     <div>
-      <header className='w-full bg-slate-800'>
+      <header className='flex w-full justify-between bg-slate-900'>
         <button className='inline-block size-14 p-3 md:hidden'>
           <span className='sr-only'>Open menu</span>
           <svg
@@ -41,8 +41,8 @@ export default function Home() {
             ></path>
           </svg>
         </button>
-
-        <nav className='flex justify-end bg-slate-900 text-right text-2xl transition-all duration-300 ease-in'>
+        <span className='p-3 text-4xl text-white'>Aeki</span>
+        <nav className='flex justify-end text-right text-2xl transition-all duration-300 ease-in'>
           {navLinks.map((navLink) => (
             <Link
               href={navLink.href}
