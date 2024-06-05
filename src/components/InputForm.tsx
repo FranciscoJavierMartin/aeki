@@ -11,8 +11,8 @@ export default function InputForm({
   ...props
 }: InputFormProps) {
   return (
-    <>
-      <div className='relative mx-0 mb-7 w-full'>
+    <div className={'mx-0 mt-5'}>
+      <div className={'relative mb-7 w-full'}>
         <div className='absolute flex w-full items-center rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] focus-within:border-purple-500'>
           <input
             id={id}
@@ -29,12 +29,12 @@ export default function InputForm({
         </div>
       </div>
       {errors.length > 0 && (
-        <div className='m-2 text-sm text-red-400'>
+        <div className='ml-2 mt-12 text-sm text-red-400'>
           {errors.map((error) => (
             <p key={error}>{error}</p>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
