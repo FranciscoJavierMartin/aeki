@@ -1,8 +1,4 @@
-'use server';
-import { redirect } from 'next/navigation';
 import { loginUserSchema } from '@/lib/validations/loginUserSchema';
-import { NextRequest } from 'next/server';
-import { headers } from 'next/headers';
 
 export async function loginUser(
   prev: LoginFormState<LoginFormFields>,
@@ -23,18 +19,12 @@ export async function loginUser(
         method: 'POST',
         body: JSON.stringify(validatedFields.data),
       }).then((res) => res.json());
-      
 
       //TODO: Set JWT
-      // redirect('/');
-      // router.push('/');
-
-      redirect('/');
     } else {
       errors = validatedFields.error?.flatten().fieldErrors;
     }
   } catch (error) {
-    console.log(error);
     message = 'Ups, something went wrong. Please try again.';
   }
 
