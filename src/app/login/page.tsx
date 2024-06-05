@@ -1,6 +1,7 @@
 'use client';
 import { useFormState, useFormStatus } from 'react-dom';
 import InputForm from '@/components/InputForm';
+import { loginUserSchema } from '@/lib/validations/loginUserSchema';
 
 const initialState: LoginFormState<LoginFormFields> = {
   message: '',
@@ -13,8 +14,21 @@ async function loginUser(
 ) {
   let message: string = '';
   let errors: { [key in keyof LoginFormFields]?: string[] } = {};
+  const data = {
+    username: formData.get('username'),
+    password: formData.get('password'),
+  };
 
-  console.log(prev);
+  const validatedFields = loginUserSchema.safeParse(data);
+
+  try {
+    if (validatedFields.success) {
+    } else {
+      errors = validatedFields.error?.flatten().fieldErrors;
+    }
+  } catch (error) {
+    message = 'Ups, something went wrong. Please try again.';
+  }
 
   return {
     message,
