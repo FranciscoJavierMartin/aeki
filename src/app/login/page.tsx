@@ -2,49 +2,56 @@
 import { useFormState, useFormStatus } from 'react-dom';
 import InputForm from '@/components/InputForm';
 import { loginUserSchema } from '@/lib/validations/loginUserSchema';
+import { redirect, useRouter } from 'next/navigation';
+import { loginUser } from '@/use-cases/login-user';
 
 const initialState: LoginFormState<LoginFormFields> = {
   message: '',
   errors: {},
 };
 
-async function loginUser(
-  prev: LoginFormState<LoginFormFields>,
-  formData: FormData,
-) {
-  let message: string = '';
-  let errors: { [key in keyof LoginFormFields]?: string[] } = {};
-  const data = {
-    username: formData.get('username'),
-    password: formData.get('password'),
-  };
-
-  const validatedFields = loginUserSchema.safeParse(data);
-
-  try {
-    if (validatedFields.success) {
-      fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify(validatedFields.data),
-      })
-        .then((res) => res.json())
-        .then((res) => console.log(res))
-        .catch(() => console.log('Catch'));
-    } else {
-      errors = validatedFields.error?.flatten().fieldErrors;
-    }
-  } catch (error) {
-    message = 'Ups, something went wrong. Please try again.';
-  }
-
-  return {
-    message,
-    errors,
-  };
-}
-
 export default function LoginPage() {
   const { pending } = useFormStatus();
+  const router = useRouter();
+
+  async function loginUserClient(
+    prev: LoginFormState<LoginFormFields>,
+    formData: FormData,
+  ) {
+    let message: string = '';
+    let errors: { [key in keyof LoginFormFields]?: string[] } = {};
+    const data = {
+      username: formData.get('username'),
+      password: formData.get('password'),
+    };
+
+    const validatedFields = loginUserSchema.safeParse(data);
+
+    try {
+      if (validatedFields.success) {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          body: JSON.stringify(validatedFields.data),
+        }).then((res) => res.json());
+        console.log(res);
+
+        //TODO: Set JWT
+        // redirect('/');
+        router.push('/');
+        // return redirect('/');
+      } else {
+        errors = validatedFields.error?.flatten().fieldErrors;
+      }
+    } catch (error) {
+      message = 'Ups, something went wrong. Please try again.';
+    }
+
+    return {
+      message,
+      errors,
+    };
+  }
+
   const [state, formAction] = useFormState(loginUser, initialState);
 
   return (
@@ -77,9 +84,9 @@ export default function LoginPage() {
           >
             Login
           </button>
-          <p className='hidden text-sm text-red-400'>
-            This is an error message
-          </p>
+          {state.message && (
+            <p className='text-sm text-red-400'>{state.message}</p>
+          )}
         </form>
       </div>
     </div>
