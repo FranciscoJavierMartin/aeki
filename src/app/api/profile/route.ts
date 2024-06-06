@@ -10,6 +10,13 @@ export async function GET(request: Request) {
     photoURL:
       'https://png.pngtree.com/png-vector/20190710/ourlarge/pngtree-user-vector-avatar-png-image_1541962.jpg',
     phone: '912345678',
+    address: {
+      street: 'Evegreen Terrace',
+      state: 'CA',
+      town: 'Springfield',
+      no: '123',
+      zip: '12345',
+    },
   };
 
   return NextResponse.json({ user });
