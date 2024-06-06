@@ -12,8 +12,8 @@ export async function GET(request: Request) {
     phone: '912345678',
     address: {
       street: 'Evegreen Terrace',
-      state: 'CA',
       town: 'Springfield',
+      state: 'CA',
       no: '123',
       zip: '12345',
     },
