@@ -6,46 +6,37 @@ export default async function ProfilePage() {
   );
 
   return (
-    <div>
-      <h2 className='text-3xl'>{user.name}&apos;s account</h2>
-      <h4 className='text-2xl'>Personal info</h4>
-      <div className='grid w-96 grid-cols-2 gap-y-2'>
-        <div>Name</div>
-        <div>{user.name}</div>
+    <div className='mt-10 flex flex-col items-center'>
+      <img
+        src={user.photoURL}
+        className='size-48 rounded-full'
+        alt='User photo'
+        height={192}
+        width={192}
+      />
+      <h2 className='mt-5 text-3xl'>{user.name}&apos;s account</h2>
+      <h4 className='mt-6 text-2xl'>Personal info</h4>
+      <main className='mt-5 grid grid-cols-[2fr_4fr] gap-x-4 gap-y-2'>
+        <div className='font-semibold'>Name</div>
+        <div className='text-right'>{user.name}</div>
 
-        <div>Last name</div>
-        <div>{user.lastname}</div>
+        <div className='font-semibold'>Last name</div>
+        <div className='text-right'>{user.lastname}</div>
 
-        <div>Email</div>
-        <div>{user.emai}</div>
+        <div className='font-semibold'>Email</div>
+        <div className='text-right'>{user.email}</div>
 
-        <div>DNI</div>
-        <div>{user.dni}</div>
+        <div className='font-semibold'>DNI</div>
+        <div className='text-right'>{user.dni}</div>
 
-        <div>Phone</div>
-        <div>{user.phone}</div>
+        <div className='font-semibold'>Phone</div>
+        <div className='text-right'>{user.phone}</div>
 
-        <div>Age</div>
-        <div>{diffYears(new Date(), new Date(user.dateOfBirth))}</div>
-      </div>
-
-      <h4 className='text-2xl'>Address info</h4>
-      <div className='grid w-96 grid-cols-2 gap-y-2'>
-        <div>Street</div>
-        <div>{user.address.street}</div>
-
-        <div>Town</div>
-        <div>{user.address.town}</div>
-
-        <div>Number</div>
-        <div>{user.address.no}</div>
-
-        <div>ZIP</div>
-        <div>{user.address.zip}</div>
-
-        <div>State</div>
-        <div>{user.address.state}</div>
-      </div>
+        <div className='font-semibold'>Age</div>
+        <div className='text-right'>
+          {diffYears(new Date(), new Date(user.dateOfBirth))}
+        </div>
+      </main>
     </div>
   );
 }
