@@ -14,12 +14,18 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Role {
+  ADMIN
+  REVIEWER
+  CONSULTANT
+}
+
 model User {
   id        String @id @default(cuid())
   email     String @unique
   firstName String
   lastName  String
-  role      String @default("REVIEWER")
+  role      Role   @default(REVIEWER)
   photoURL  String @default("")
   phone     String
   password  String
