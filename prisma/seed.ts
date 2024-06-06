@@ -141,6 +141,9 @@ async function seedBudgets(): Promise<void> {
     },
   });
 
+  // TODO: Add multiple products to budgets
+  // TODO: Add multiple items per product
+  // TODO: Calculate right price
   await prisma.productsOnBudgets.create({
     data: {
       budgetId: budget.id,
