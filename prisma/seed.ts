@@ -79,7 +79,9 @@ async function seedCustomers(): Promise<void> {
     new Array(5).fill(1).map(() =>
       prisma.customer.create({
         data: {
-          dni: (Math.random() * 100_000_000).toString().padStart(8, '0'),
+          dni: Math.floor(Math.random() * 100_000_000)
+            .toString()
+            .padStart(8, '0'),
           email: faker.internet.email(),
           firstName: faker.person.firstName(),
           lastName: faker.person.lastName(),
@@ -92,10 +94,29 @@ async function seedCustomers(): Promise<void> {
   console.info('Creating customers finished');
 }
 
+async function seedProducts(): Promise<void> {
+  console.info('Creating products');
+
+  await Promise.all(
+    new Array(15).fill(1).map(() =>
+      prisma.product.create({
+        data: {
+          name: faker.commerce.productName(),
+          price: +faker.commerce.price({ min: 20, max: 1000, dec: 2 }),
+          photoURL: faker.image.urlPicsumPhotos(),
+        },
+      }),
+    ),
+  );
+
+  console.info('Creating products finished');
+}
+
 async function seed() {
   await purgeData();
   await seedUsers();
   await seedCustomers();
+  await seedProducts();
 }
 
 seed()
