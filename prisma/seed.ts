@@ -160,21 +160,24 @@ async function seedBudgets(): Promise<void> {
   const totalDiscount =
     totalAmountProducts < 7 ? 5 : totalAmountProducts < 11 ? 10 : 15;
 
-  const productsOnBudgetsSaved = await Promise.all(
+  await Promise.all(
     productsOnBudgets.map(
       async (p) =>
         await prisma.productsOnBudgets.create({
-          data: {
-            budgetId: budget.id,
-            productId: products[0].id,
-            quantity: 1,
-            pricePerUnit: products[0].price,
-          },
+          data: { ...p },
         }),
     ),
   );
 
-
+  await prisma.budget.update({
+    data: {
+      discountAppliedPercentage: totalDiscount,
+      totalPrice: totalPrice,
+    },
+    where: {
+      id: budget.id,
+    },
+  });
 
   // await prisma.productsOnBudgets.create({
   //   data: {
