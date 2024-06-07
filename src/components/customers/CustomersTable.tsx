@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/Table';
 
 type CustomersTableProps = {
-  data: { email: string; dni: string; name: string }[];
+  data: { email: string; dni: string; firstName: string; lastName: string }[];
 };
 
 export default function CustomersTable({ data }: CustomersTableProps) {
@@ -32,7 +32,9 @@ export default function CustomersTable({ data }: CustomersTableProps) {
             className='cursor-pointer'
             onClick={() => router.push(`/customers/${customer.dni}`)}
           >
-            <TableCell>{customer.name}</TableCell>
+            <TableCell>
+              {customer.firstName} {customer.lastName}
+            </TableCell>
             <TableCell>{customer.dni}</TableCell>
             <TableCell>{customer.email}</TableCell>
           </TableRow>
