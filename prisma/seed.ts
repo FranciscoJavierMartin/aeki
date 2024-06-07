@@ -112,8 +112,17 @@ async function seedProducts(): Promise<void> {
   console.info('Creating products finished');
 }
 
-async function seedBudgets(): Promise<void> {
-  console.info('Creating budgets');
+async function seedBudget(customer: {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dni: string;
+}): Promise<void> {
+  console.info(
+    `Creating budget for customer ${customer.firstName} ${customer.lastName}`,
+  );
 
   const skipProducts = Math.floor(
     (Math.random() * (await prisma.customer.count())) / 2,
@@ -122,13 +131,6 @@ async function seedBudgets(): Promise<void> {
     take: 3,
     skip: skipProducts,
   });
-  const skipCustomers = (await prisma.customer.count()) / 2;
-  const customer = (
-    await prisma.customer.findMany({
-      take: 1,
-      skip: Math.floor(Math.random() * skipCustomers),
-    })
-  ).pop()!;
 
   const budget = await prisma.budget.create({
     data: {
@@ -173,7 +175,23 @@ async function seedBudgets(): Promise<void> {
     },
   });
 
-  console.info('Creating budgets finished');
+  console.info(
+    `Creating budget finished for customer ${customer.firstName} ${customer.lastName}`,
+  );
+}
+
+async function seedBudgets(): Promise<void> {
+  const customers = await prisma.customer.findMany();
+
+  customers.forEach(async (customer) => {
+    if (Math.random() < 0.7) {
+      const times = Math.floor(Math.random() * 5);
+
+      for (let i = 0; i < times; i++) {
+        await seedBudget(customer);
+      }
+    }
+  });
 }
 
 async function seed() {
