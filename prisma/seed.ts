@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { PASSWORD_SALT } from '../src/lib/utils/constants';
 
 const prisma = new PrismaClient();
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
 
 async function purgeData(): Promise<void> {
   console.info('Purge db start');
@@ -79,9 +80,11 @@ async function seedCustomers(): Promise<void> {
     new Array(5).fill(1).map(() =>
       prisma.customer.create({
         data: {
-          dni: Math.floor(Math.random() * 100_000_000)
-            .toString()
-            .padStart(8, '0'),
+          dni:
+            Math.floor(Math.random() * 100_000_000)
+              .toString()
+              .padStart(8, '0') +
+            alphabet[Math.floor(Math.random() * alphabet.length)],
           email: faker.internet.email(),
           firstName: faker.person.firstName(),
           lastName: faker.person.lastName(),
