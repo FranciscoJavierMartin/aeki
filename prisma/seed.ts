@@ -114,6 +114,7 @@ async function seedProducts(): Promise<void> {
 
 async function seedBudgets(): Promise<void> {
   console.info('Creating budgets');
+
   const skipProducts = Math.floor(
     (Math.random() * (await prisma.customer.count())) / 2,
   );
@@ -130,28 +131,49 @@ async function seedBudgets(): Promise<void> {
     })
   ).pop()!;
 
-  const totalPrice = products.reduce<number>((acc, p) => p.price + acc, 0);
-  const discount = totalProducts < 3 ? 5 : totalProducts < 5 ? 10 : 15;
-
   const budget = await prisma.budget.create({
     data: {
       customerId: customer.id,
-      discountAppliedPercentage: discount,
-      totalPrice: (totalPrice * (100 - discount)) / 100,
+      // discountAppliedPercentage: discount,
+      // totalPrice: (totalPrice * (100 - discount)) / 100,
     },
   });
 
   // TODO: Add multiple products to budgets
   // TODO: Add multiple items per product
   // TODO: Calculate right price
-  await prisma.productsOnBudgets.create({
-    data: {
-      budgetId: budget.id,
-      productId: products[0].id,
-      quantity: 1,
-      pricePerUnit: products[0].price,
-    },
+
+  const productsOnBudgets = products.map((p) => ({
+    budgetId: budget.id,
+    productId: p.id,
+    quantity: 1 + Math.round(Math.random() * 5),
+    pricePerUnit: p.price,
+  }));
+
+  const totalPrice = productsOnBudgets.reduce<number>(
+    (acc, p) => p.pricePerUnit * p.quantity + acc,
+    0,
+  );
+  const totalAmountProducts = productsOnBudgets.reduce<number>(
+    (acc, p) => p.quantity + acc,
+    0,
+  );
+  const totalDiscount =
+    totalAmountProducts < 7 ? 5 : totalAmountProducts < 11 ? 10 : 15;
+  console.log(productsOnBudgets.map((p) => p.quantity));
+  console.log({
+    totalPrice,
+    totalDiscount,
+    totalAmountProducts,
   });
+  // await prisma.productsOnBudgets.create({
+  //   data: {
+  //     budgetId: budget.id,
+  //     productId: products[0].id,
+  //     quantity: 1,
+  //     pricePerUnit: products[0].price,
+  //   },
+  // });
 
   console.info('Creating budgets finished');
 }
