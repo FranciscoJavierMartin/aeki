@@ -190,6 +190,10 @@ async function seedBudgets(): Promise<void> {
       for (let i = 0; i < times; i++) {
         await seedBudget(customer);
       }
+    } else {
+      console.info(
+        `Skipping budgets for customer ${customer.firstName} ${customer.lastName}`,
+      );
     }
   });
 }
