@@ -118,7 +118,6 @@ async function seedBudgets(): Promise<void> {
   const skipProducts = Math.floor(
     (Math.random() * (await prisma.customer.count())) / 2,
   );
-  const totalProducts = 1 + Math.random() * 5;
   const products = await prisma.product.findMany({
     take: 3,
     skip: skipProducts,
@@ -160,12 +159,23 @@ async function seedBudgets(): Promise<void> {
   );
   const totalDiscount =
     totalAmountProducts < 7 ? 5 : totalAmountProducts < 11 ? 10 : 15;
-  console.log(productsOnBudgets.map((p) => p.quantity));
-  console.log({
-    totalPrice,
-    totalDiscount,
-    totalAmountProducts,
-  });
+
+  const productsOnBudgetsSaved = await Promise.all(
+    productsOnBudgets.map(
+      async (p) =>
+        await prisma.productsOnBudgets.create({
+          data: {
+            budgetId: budget.id,
+            productId: products[0].id,
+            quantity: 1,
+            pricePerUnit: products[0].price,
+          },
+        }),
+    ),
+  );
+
+
+
   // await prisma.productsOnBudgets.create({
   //   data: {
   //     budgetId: budget.id,
