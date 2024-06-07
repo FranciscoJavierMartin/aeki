@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Budget" ADD COLUMN     "dueDate" TIMESTAMP(3) NOT NULL DEFAULT NOW() + INTERVAL '15 days';
