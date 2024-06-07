@@ -133,14 +133,8 @@ async function seedBudgets(): Promise<void> {
   const budget = await prisma.budget.create({
     data: {
       customerId: customer.id,
-      // discountAppliedPercentage: discount,
-      // totalPrice: (totalPrice * (100 - discount)) / 100,
     },
   });
-
-  // TODO: Add multiple products to budgets
-  // TODO: Add multiple items per product
-  // TODO: Calculate right price
 
   const productsOnBudgets = products.map((p) => ({
     budgetId: budget.id,
@@ -178,15 +172,6 @@ async function seedBudgets(): Promise<void> {
       id: budget.id,
     },
   });
-
-  // await prisma.productsOnBudgets.create({
-  //   data: {
-  //     budgetId: budget.id,
-  //     productId: products[0].id,
-  //     quantity: 1,
-  //     pricePerUnit: products[0].price,
-  //   },
-  // });
 
   console.info('Creating budgets finished');
 }
