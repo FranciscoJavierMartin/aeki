@@ -7,6 +7,25 @@ import {
   TableRow,
 } from '@/components/ui/Table';
 
+type Customer =
+  | ({
+      budgets: {
+        id: string;
+        totalPrice: number;
+        discountAppliedPercentage: number;
+        dueDate: Date;
+        customerId: string;
+      }[];
+    } & {
+      id: string;
+      email: string;
+      firstName: string;
+      lastName: string;
+      phone: string;
+      dni: string;
+    })
+  | null;
+
 export default async function CustomerPage({
   params,
 }: {
@@ -15,6 +34,8 @@ export default async function CustomerPage({
   const { customer } = await fetch(
     `http://localhost:4230/api/customers/${params.id}`,
   ).then((res) => res.json());
+
+  console.log(customer);
 
   return (
     <div>

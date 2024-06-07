@@ -5,9 +5,12 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  // const customer = await prismaClient.customer.find({
-  //   where: { dni: params.id },
-  // });
+  const customer = await prismaClient.customer.findUnique({
+    where: { dni: params.id },
+    include: {
+      budgets: true,
+    },
+  });
 
-  return NextResponse.json({ customer: null });
+  return NextResponse.json({ customer });
 }
