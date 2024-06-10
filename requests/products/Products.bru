@@ -18,3 +18,28 @@ assert {
   res.status: eq 200
   res.body.products.length: gt 1
 }
+
+tests {
+  test('products contains id in item', () => {
+    const { products } = res.getBody();
+    expect(products[0].id).to.be.a('string');
+    expect(products[0].id).to.not.equal('');
+  })
+  
+  test('products contains name in item', () => {
+    const { products } = res.getBody();
+    expect(products[0].name).to.be.a('string');
+    expect(products[0].name).to.not.equal('');
+  })
+  
+  test('products contains photoURL in item', () => {
+    const { products } = res.getBody();
+    expect(products[0].photoURL).to.be.a('string');
+    expect(products[0].photoURL).to.not.equal('');
+  })
+  
+  test('products contains price in item', () => {
+    const { products } = res.getBody();
+    expect(products[0].price).to.be.a('number');
+  })
+}
