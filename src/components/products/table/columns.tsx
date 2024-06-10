@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
   return isSorted === 'asc' ? (
@@ -50,6 +51,22 @@ export const columns: ColumnDef<ProductRow>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: 'photoURL',
+    header: '',
+    size: 30,
+    maxSize: 30,
+    minSize: 30,
+    cell: ({ row }) => {
+      return (
+        <Avatar>
+          <AvatarImage src={row.original.photoURL} />
+        </Avatar>
+      );
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: 'name',
     header: ({ column }) => {
       return (
@@ -62,12 +79,6 @@ export const columns: ColumnDef<ProductRow>[] = [
         </Button>
       );
     },
-  },
-  {
-    accessorKey: 'photoURL',
-    header: '',
-    enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: 'price',
