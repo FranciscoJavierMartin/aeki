@@ -8,5 +8,11 @@ import { customersOptions } from '@/components/customers/options';
 export default function CustomersTable() {
   const { data } = useSuspenseQuery(customersOptions);
 
-  return <DataTable columns={columns} data={data} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      inputPlaceholder='Filter by email, first name, last name, dni...'
+    />
+  );
 }

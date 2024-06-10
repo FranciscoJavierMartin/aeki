@@ -8,5 +8,11 @@ import { productsOptions } from '@/components/products/options';
 export default function ProductsTable() {
   const { data } = useSuspenseQuery(productsOptions);
 
-  return <DataTable columns={columns} data={data} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      inputPlaceholder='Filter by name'
+    />
+  );
 }

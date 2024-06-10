@@ -27,11 +27,12 @@ import { DataTablePagination } from '@/components/ui/data-table-pagination';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  inputPlaceholder: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  data,inputPlaceholder
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -58,10 +59,10 @@ export function DataTable<TData, TValue>({
     <div>
       <div className='flex items-center py-4'>
         <Input
-          placeholder='Filter by email, first name, last name, dni...'
-          value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+          placeholder={inputPlaceholder}
+          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
-            table.getColumn('email')?.setFilterValue(event.target.value)
+            table.getColumn('name')?.setFilterValue(event.target.value)
           }
           className='max-w-sm'
         />
