@@ -7,8 +7,12 @@ export const columns: ColumnDef<CustomerRow>[] = [
     header: 'DNI',
   },
   {
-    accessorKey: 'name',
-    header: 'Name',
+    accessorKey: 'lastName',
+    header: 'Last Name',
+  },
+  {
+    accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
     accessorKey: 'email',
