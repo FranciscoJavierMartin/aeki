@@ -5,14 +5,12 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/products/clx4fsjt8000cw9s18lzhcxbm
+  url: {{baseUrl}}/products/{{productId}}
   body: json
   auth: none
 }
 
-body:json {
-  {
-    "username": "{{username}}",
-    "password": "{{password}}"
-  }
+assert {
+  res.status: eq 200
+  res.body.product: neq null
 }
