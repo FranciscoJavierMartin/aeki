@@ -11,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { toast } from 'sonner';
 
 export const columns: ColumnDef<CustomerRow>[] = [
   {
@@ -45,7 +46,10 @@ export const columns: ColumnDef<CustomerRow>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(customer.dni)}
+              onClick={() => {
+                navigator.clipboard.writeText(customer.dni);
+                toast('DNI copied to clipboard');
+              }}
             >
               Copy customer DNI
             </DropdownMenuItem>
