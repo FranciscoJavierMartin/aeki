@@ -5,14 +5,12 @@ meta {
 }
 
 get {
-  url: http://localhost:4230/api/customers/58723997H
+  url: {{baseUrl}}/customers/{{dni}}
   body: json
   auth: none
 }
 
-body:json {
-  {
-    "username": "{{username}}",
-    "password": "{{password}}"
-  }
+assert {
+  res.status: eq 200
+  res.body.customer: neq null
 }
