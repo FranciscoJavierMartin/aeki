@@ -18,3 +18,29 @@ assert {
   res.status: eq 200
   res.body.customers.length: gt 1
 }
+
+tests {
+  test('customers contains dni in item', () => {
+    const { customers } = res.getBody();
+    expect(customers[0].dni).to.be.a('string');
+    expect(customers[0].dni).to.not.equal('');
+  })
+  
+  test('customers contains email in item', () => {
+    const { customers } = res.getBody();
+    expect(customers[0].email).to.be.a('string');
+    expect(customers[0].email).to.not.equal('');
+  })
+  
+  test('customers contains firstName in item', () => {
+    const { customers } = res.getBody();
+    expect(customers[0].firstName).to.be.a('string');
+    expect(customers[0].firstName).to.not.equal('');
+  })
+  
+  test('customers contains lastName in item', () => {
+    const { customers } = res.getBody();
+    expect(customers[0].lastName).to.be.a('string');
+    expect(customers[0].lastName).to.not.equal('');
+  })
+}
