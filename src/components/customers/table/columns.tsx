@@ -5,7 +5,7 @@ import {
   ChevronUpIcon,
   DotsHorizontalIcon,
 } from '@radix-ui/react-icons';
-import { ColumnDef, SortDirection } from '@tanstack/react-table';
+import { ColumnDef, FilterFn, Row, SortDirection } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -16,6 +16,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+
+const myCustomFilterFn: FilterFn<CustomerRow> = (
+  row: Row<CustomerRow>,
+  columnId: string,
+  filterValue: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  addMeta: (meta: any) => void,
+) => {
+  const filterParts = filterValue.toLowerCase().split(' ');
+  const rowValues =
+    `${row.original.dni} ${row.original.email} ${row.original.firstName} ${row.original.lastName}`.toLowerCase();
+
+  return filterParts.every((part) => rowValues.includes(part));
+};
 
 function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
   return isSorted === 'asc' ? (
@@ -28,6 +42,7 @@ function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
 export const columns: ColumnDef<CustomerRow>[] = [
   {
     accessorKey: 'dni',
+    filterFn: myCustomFilterFn,
     header: ({ column }) => {
       return (
         <Button
@@ -42,6 +57,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'lastName',
+    filterFn: myCustomFilterFn,
     header: ({ column }) => {
       return (
         <Button
@@ -56,6 +72,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'firstName',
+    filterFn: myCustomFilterFn,
     header: ({ column }) => {
       return (
         <Button
@@ -70,6 +87,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'email',
+    filterFn: myCustomFilterFn,
     header: ({ column }) => {
       return (
         <Button

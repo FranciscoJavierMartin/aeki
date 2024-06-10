@@ -1,5 +1,6 @@
 type CustomerRow = {
   dni: string;
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
 };
