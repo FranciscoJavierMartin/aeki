@@ -28,7 +28,17 @@ function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
 export const columns: ColumnDef<CustomerRow>[] = [
   {
     accessorKey: 'dni',
-    header: 'DNI',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          DNI
+          <SortedIcon isSorted={column.getIsSorted()} />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'lastName',
