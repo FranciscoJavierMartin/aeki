@@ -7,6 +7,13 @@ export async function GET(
 ) {
   const customer = await prismaClient.customer.findUnique({
     where: { dni: params.id },
+    include: {
+      budgets: {
+        include: {
+          products: true,
+        },
+      },
+    },
   });
   return NextResponse.json({ customer });
 }
