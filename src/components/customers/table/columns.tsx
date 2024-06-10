@@ -6,6 +6,7 @@ import {
   DotsHorizontalIcon,
 } from '@radix-ui/react-icons';
 import { ColumnDef, FilterFn, Row, SortDirection } from '@tanstack/react-table';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -15,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { toast } from 'sonner';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const myCustomFilterFn: FilterFn<CustomerRow> = (
   row: Row<CustomerRow>,
@@ -40,6 +41,28 @@ function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
 }
 
 export const columns: ColumnDef<CustomerRow>[] = [
+  {
+    id: 'select',
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate')
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label='Select all'
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label='Select row'
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
   {
     accessorKey: 'dni',
     filterFn: myCustomFilterFn,
