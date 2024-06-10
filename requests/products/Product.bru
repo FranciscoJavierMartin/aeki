@@ -1,0 +1,18 @@
+meta {
+  name: Product
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:4230/api/products/clx4fsjt8000cw9s18lzhcxbm
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "{{username}}",
+    "password": "{{password}}"
+  }
+}

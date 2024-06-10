@@ -1,0 +1,18 @@
+meta {
+  name: Customers
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:4230/api/customers
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "{{username}}",
+    "password": "{{password}}"
+  }
+}
