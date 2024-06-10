@@ -32,7 +32,17 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'lastName',
-    header: 'Last Name',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Last Name
+          <SortedIcon isSorted={column.getIsSorted()} />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'firstName',
