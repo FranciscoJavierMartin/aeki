@@ -1,0 +1,20 @@
+meta {
+  name: Customers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/customers
+  body: json
+  auth: none
+}
+
+vars:post-response {
+  dni: res.body.customers[0].dni
+}
+
+assert {
+  res.status: eq 200
+  res.body.customers.length: gt 1
+}

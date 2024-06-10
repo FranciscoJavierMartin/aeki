@@ -38,7 +38,7 @@ model Customer {
   firstName String
   lastName  String
   phone     String
-  dni       String
+  dni       String   @unique
   budgets   Budget[]
 }
 

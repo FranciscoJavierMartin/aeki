@@ -1,0 +1,16 @@
+meta {
+  name: Customer
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/customers/{{dni}}
+  body: json
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.customer: neq null
+}

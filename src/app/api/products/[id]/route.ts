@@ -5,8 +5,8 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const customer = await prismaClient.customer.findUnique({
-    where: { dni: params.id },
+  const product = await prismaClient.product.findUnique({
+    where: { id: params.id },
   });
-  return NextResponse.json({ customer });
+  return NextResponse.json({ product });
 }

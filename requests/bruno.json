@@ -1,0 +1,13 @@
+{
+  "version": "1",
+  "name": "Aeki",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "presets": {
+    "requestType": "http",
+    "requestUrl": "http://localhost:4230/api"
+  }
+}
