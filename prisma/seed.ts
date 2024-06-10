@@ -77,7 +77,7 @@ async function seedCustomers(): Promise<void> {
   console.info('Creating customers');
 
   await Promise.all(
-    new Array(5).fill(1).map(() =>
+    new Array(50).fill(1).map(() =>
       prisma.customer.create({
         data: {
           dni:
@@ -101,7 +101,7 @@ async function seedProducts(): Promise<void> {
   console.info('Creating products');
 
   await Promise.all(
-    new Array(15).fill(1).map(() =>
+    new Array(150).fill(1).map(() =>
       prisma.product.create({
         data: {
           name: faker.commerce.productName(),
@@ -131,7 +131,7 @@ async function seedBudget(customer: {
     (Math.random() * (await prisma.customer.count())) / 2,
   );
   const products = await prisma.product.findMany({
-    take: 3,
+    take: 5,
     skip: skipProducts,
   });
 
