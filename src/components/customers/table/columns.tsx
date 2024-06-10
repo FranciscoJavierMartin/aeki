@@ -1,7 +1,11 @@
 'use client';
 import Link from 'next/link';
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import { ColumnDef } from '@tanstack/react-table';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  DotsHorizontalIcon,
+} from '@radix-ui/react-icons';
+import { ColumnDef, SortDirection } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,6 +16,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+
+function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
+  return isSorted === 'asc' ? (
+    <ChevronUpIcon className='size-4' />
+  ) : isSorted === 'desc' ? (
+    <ChevronDownIcon className='size-4' />
+  ) : null;
+}
 
 export const columns: ColumnDef<CustomerRow>[] = [
   {
@@ -28,7 +40,17 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'email',
-    header: 'Email',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Email
+          <SortedIcon isSorted={column.getIsSorted()} />
+        </Button>
+      );
+    },
   },
   {
     id: 'actions',
