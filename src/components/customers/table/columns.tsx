@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
 
-export const filterByCustomer: FilterFn<CustomerRow> = (
+const filterByCustomer: FilterFn<CustomerRow> = (
   row: Row<CustomerRow>,
   columnId: string,
   filterValue: string,
