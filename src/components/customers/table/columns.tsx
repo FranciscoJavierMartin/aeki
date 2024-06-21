@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
 
-const myCustomFilterFn: FilterFn<CustomerRow> = (
+const filterByCustomer: FilterFn<CustomerRow> = (
   row: Row<CustomerRow>,
   columnId: string,
   filterValue: string,
@@ -65,7 +65,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'dni',
-    filterFn: myCustomFilterFn,
+    filterFn: filterByCustomer,
     header: ({ column }) => {
       return (
         <Button
@@ -80,7 +80,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'lastName',
-    filterFn: myCustomFilterFn,
+    filterFn: filterByCustomer,
     header: ({ column }) => {
       return (
         <Button
@@ -95,7 +95,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'firstName',
-    filterFn: myCustomFilterFn,
+    filterFn: filterByCustomer,
     header: ({ column }) => {
       return (
         <Button
@@ -110,7 +110,7 @@ export const columns: ColumnDef<CustomerRow>[] = [
   },
   {
     accessorKey: 'email',
-    filterFn: myCustomFilterFn,
+    filterFn: filterByCustomer,
     header: ({ column }) => {
       return (
         <Button

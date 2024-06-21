@@ -13,6 +13,7 @@ export default function ProductsTable() {
       columns={columns}
       data={data}
       inputPlaceholder='Filter by name'
+      columnName='name'
     />
   );
 }

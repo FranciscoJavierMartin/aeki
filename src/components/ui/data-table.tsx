@@ -28,16 +28,23 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   inputPlaceholder: string;
+  columnName?: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   inputPlaceholder,
+  columnName,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
+  const filterField =
+    columnName ||
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (columns.find((c) => c.enableColumnFilter || c.filterFn) as any)
+      ?.accessorKey;
 
   const table = useReactTable({
     data,
@@ -58,16 +65,20 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className='flex items-center py-4'>
-        <Input
-          placeholder={inputPlaceholder}
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm'
-        />
-      </div>
+      {filterField && (
+        <div className='flex items-center py-4'>
+          <Input
+            placeholder={inputPlaceholder}
+            value={
+              (table.getColumn(filterField)?.getFilterValue() as string) ?? ''
+            }
+            onChange={(event) =>
+              table.getColumn(filterField)?.setFilterValue(event.target.value)
+            }
+            className='max-w-sm'
+          />
+        </div>
+      )}
       <div className='rounded-md border'>
         <Table>
           <TableHeader>
