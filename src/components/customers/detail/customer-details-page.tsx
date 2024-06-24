@@ -10,7 +10,6 @@ import {
   budgetColumns,
   type BudgetWithAmount,
 } from '@/components/customers/detail/budget-columns';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getCustomerOptions(id));
@@ -51,12 +50,17 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
             </h1>
             <a
               href={`mailto:${data.email}`}
-              className='font-normal text-slate-500'
+              className='mb-2 font-normal text-slate-500'
             >
               {data.email}
             </a>
+            <a
+              href={`tel:${data.phone}`}
+              className='font-normal text-slate-500'
+            >
+              {data.phone}
+            </a>
             <div className='font-normal text-slate-500'>{data.dni}</div>
-            <div className='font-normal text-slate-500'>{data.phone}</div>
           </div>
         </div>
       </div>
