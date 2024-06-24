@@ -2,6 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { ProductInBudget } from '@/types/customer';
 import { Button } from '@/components/ui/button';
 import SortedIcon from '@/components/ui/sorted-icon';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 export const productColumns: ColumnDef<ProductInBudget>[] = [
   {
@@ -20,6 +21,19 @@ export const productColumns: ColumnDef<ProductInBudget>[] = [
   },
   {
     accessorKey: 'photoURL',
+    header: '',
+    size: 30,
+    maxSize: 30,
+    minSize: 30,
+    cell: ({ row }) => {
+      return (
+        <Avatar>
+          <AvatarImage src={row.original.photoURL} />
+        </Avatar>
+      );
+    },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: 'price',
