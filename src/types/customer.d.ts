@@ -21,12 +21,19 @@ export interface Budget {
   discountAppliedPercentage: number;
   dueDate: string;
   customerId: string;
-  products: Product[];
+  products: ProductBudget[];
 }
 
-export interface Product {
-  productId: string;
+export interface ProductBudget {
   budgetId: string;
   quantity: number;
   pricePerUnit: number;
+  Product: ProductInBudget;
+}
+
+export interface ProductInBudget {
+  id: string;
+  name: string;
+  photoURL: string;
+  price: number;
 }

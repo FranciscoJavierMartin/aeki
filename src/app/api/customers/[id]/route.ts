@@ -10,7 +10,14 @@ export async function GET(
     include: {
       budgets: {
         include: {
-          products: true,
+          products: {
+            select: {
+              Product: true,
+              budgetId: true,
+              pricePerUnit: true,
+              quantity: true,
+            },
+          },
         },
       },
     },
