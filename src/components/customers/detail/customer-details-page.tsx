@@ -15,8 +15,6 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
     }, new Set<ProductInBudget>()),
   );
 
-  console.log(products);
-
   return (
     <div>
       <h1>

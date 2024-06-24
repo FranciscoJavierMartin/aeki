@@ -12,7 +12,7 @@ export const productColumns: ColumnDef<ProductInBudget>[] = [
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          Price
+          Name
           <SortedIcon isSorted={column.getIsSorted()} />
         </Button>
       );
@@ -25,14 +25,25 @@ export const productColumns: ColumnDef<ProductInBudget>[] = [
     accessorKey: 'price',
     header: ({ column }) => {
       return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Price
-          <SortedIcon isSorted={column.getIsSorted()} />
-        </Button>
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Price
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
       );
+    },
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue('price'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount);
+
+      return <div className='text-right font-medium'>{formatted}</div>;
     },
   },
 ];
