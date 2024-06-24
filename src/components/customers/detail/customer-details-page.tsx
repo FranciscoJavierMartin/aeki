@@ -6,6 +6,7 @@ import {
   productColumns,
   type CustomerProductItem,
 } from '@/components/customers/detail/product-columns';
+import { budgetColumns } from '@/components/customers/detail/budget-columns';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getCustomerOptions(id));
@@ -31,8 +32,9 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
       <h1>
         Customer {data.firstName} {data.lastName}
       </h1>
-      <div className='grid grid-cols-2'>
+      <div className='grid grid-cols-2 gap-5 p-3'>
         <DataTable data={products} columns={productColumns} />
+        <DataTable data={data.budgets} columns={budgetColumns} />
       </div>
     </div>
   );
