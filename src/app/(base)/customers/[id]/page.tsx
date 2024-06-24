@@ -11,7 +11,7 @@ export default function CustomerPage({ params }: { params: { id: string } }) {
   return (
     <div>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <CustomerDetailsPage />
+        <CustomerDetailsPage id={params.id} />
       </HydrationBoundary>
     </div>
   );

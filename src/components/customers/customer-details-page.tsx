@@ -2,11 +2,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
 import { DataTable } from '../ui/data-table';
-import { Product } from '@/types/customer';
 
-export default function CustomerDetailsPage() {
-  // TODO: Get param from url
-  const { data } = useSuspenseQuery(getCustomerOptions('09744119U'));
+export default function CustomerDetailsPage({ id }: { id: string }) {
+  const { data } = useSuspenseQuery(getCustomerOptions(id));
   // const products = Array.from(
   //   data.budgets.reduce<Set<Product>>((acc, budget) => {
   //     budget.products.forEach((p) => {
@@ -16,7 +14,7 @@ export default function CustomerDetailsPage() {
   //   }, new Set<Product>()),
   // );
 
-  console.log(data.budgets)
+  console.log(data.budgets);
 
   return (
     <div>
