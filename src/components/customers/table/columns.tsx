@@ -1,11 +1,7 @@
 'use client';
 import Link from 'next/link';
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  DotsHorizontalIcon,
-} from '@radix-ui/react-icons';
-import { ColumnDef, FilterFn, Row, SortDirection } from '@tanstack/react-table';
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { ColumnDef, FilterFn, Row } from '@tanstack/react-table';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
@@ -18,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CustomerRow } from '@/types/customer';
+import SortedIcon from '@/components/ui/sorted-icon';
 
 const filterByCustomer: FilterFn<CustomerRow> = (
   row: Row<CustomerRow>,
@@ -32,14 +29,6 @@ const filterByCustomer: FilterFn<CustomerRow> = (
 
   return filterParts.every((part) => rowValues.includes(part));
 };
-
-function SortedIcon({ isSorted }: { isSorted: false | SortDirection }) {
-  return isSorted === 'asc' ? (
-    <ChevronUpIcon className='size-4' />
-  ) : isSorted === 'desc' ? (
-    <ChevronDownIcon className='size-4' />
-  ) : null;
-}
 
 export const columns: ColumnDef<CustomerRow>[] = [
   {

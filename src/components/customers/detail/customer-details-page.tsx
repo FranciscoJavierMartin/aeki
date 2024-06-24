@@ -2,7 +2,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
 import { DataTable } from '@/components/ui/data-table';
-import { columns } from '@/components/customers/detail/columns';
+import { productColumns } from '@/components/customers/detail/product-columns';
 import { ProductInBudget } from '@/types/customer';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
@@ -23,7 +23,7 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
         Customer {data.firstName} {data.lastName}
       </h1>
       <div className='grid grid-cols-2'>
-        <DataTable data={products} columns={columns} />
+        <DataTable data={products} columns={productColumns} />
       </div>
     </div>
   );
