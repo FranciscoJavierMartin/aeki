@@ -2,18 +2,29 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
 import { DataTable } from '@/components/ui/data-table';
-import { productColumns } from '@/components/customers/detail/product-columns';
-import { ProductInBudget } from '@/types/customer';
+import {
+  productColumns,
+  type CustomerProductItem,
+} from '@/components/customers/detail/product-columns';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getCustomerOptions(id));
 
-  const products: ProductInBudget[] = Array.from(
-    data.budgets.reduce<Set<ProductInBudget>>((acc, b) => {
-      b.products.forEach((p) => acc.add(p.Product));
-      return acc;
-    }, new Set<ProductInBudget>()),
-  );
+  const products: CustomerProductItem[] = data.budgets.reduce<
+    CustomerProductItem[]
+  >((acc, b) => {
+    b.products.forEach((product) => {
+      const index = acc.findIndex((p) => p.id === product.Product.id);
+
+      if (index > -1) {
+        acc[index].quantity += product.quantity;
+      } else {
+        acc.push({ ...product.Product, quantity: product.quantity });
+      }
+    });
+
+    return acc;
+  }, []);
 
   return (
     <div>

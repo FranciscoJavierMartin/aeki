@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button';
 import SortedIcon from '@/components/ui/sorted-icon';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
-export const productColumns: ColumnDef<ProductInBudget>[] = [
+export type CustomerProductItem = ProductInBudget & { quantity: number };
+
+export const productColumns: ColumnDef<CustomerProductItem>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => {
@@ -34,6 +36,10 @@ export const productColumns: ColumnDef<ProductInBudget>[] = [
     },
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey: 'quantity',
+    header: 'Quantity',
   },
   {
     accessorKey: 'price',
