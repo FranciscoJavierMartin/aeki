@@ -3,7 +3,9 @@ import SortedIcon from '@/components/ui/sorted-icon';
 import { Budget } from '@/types/customer';
 import { ColumnDef } from '@tanstack/react-table';
 
-export const budgetColumns: ColumnDef<Budget>[] = [
+export type BudgetWithAmount = Omit<Budget, 'product'> & { amount: number };
+
+export const budgetColumns: ColumnDef<BudgetWithAmount>[] = [
   {
     accessorKey: 'dueDate',
     header: ({ column }) => {
@@ -21,5 +23,8 @@ export const budgetColumns: ColumnDef<Budget>[] = [
       const dueDate = new Date(row.original.dueDate);
       return <div className='text-right'>{dueDate.toLocaleDateString()}</div>;
     },
+  },
+  {
+    accessorKey: 'amount',
   },
 ];
