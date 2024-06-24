@@ -1,60 +1,18 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
+import CustomerDetailsPage from '@/components/customers/detail/customer-details-page';
+import { getCustomerOptions } from '@/components/customers/options';
+import { getQueryClient } from '@/lib/utils/get-query-client';
 
-export default async function CustomerPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { customer } = await fetch(
-    `http://localhost:4230/api/customers/${params.id}`,
-  ).then((res) => res.json());
+export default function CustomerPage({ params }: { params: { id: string } }) {
+  const queryClient = getQueryClient();
+
+  void queryClient.prefetchQuery(getCustomerOptions(params.id));
 
   return (
     <div>
-      <h1 className='text-2xl'>{customer.name}</h1>
-      <div className='grid w-full grid-cols-2 gap-2'>
-        <div>
-          <h3>Products</h3>
-          <Table>
-            <TableHeader>
-              <TableRow className='hover:bg-transparent'>
-                <TableHead>Product</TableHead>
-                <TableHead>Color</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell>Table</TableCell>
-                <TableCell>White</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
-        <div>
-          <h3>Budgets</h3>
-          <Table>
-            <TableHeader>
-              <TableRow className='hover:bg-transparent'>
-                <TableHead>Product</TableHead>
-                <TableHead>Color</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell>Table</TableCell>
-                <TableCell>White</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
-      </div>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <CustomerDetailsPage id={params.id} />
+      </HydrationBoundary>
     </div>
   );
 }
