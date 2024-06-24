@@ -43,4 +43,17 @@ export const budgetColumns: ColumnDef<BudgetWithAmount>[] = [
       return <div className='text-center'>{row.original.amount}</div>;
     },
   },
+  {
+    accessorKey: 'discountAppliedPercentage',
+    header: () => {
+      return <div className='text-center'>Applied discount</div>;
+    },
+    cell: ({ row }) => {
+      return (
+        <div className='text-center'>
+          {row.original.discountAppliedPercentage}%
+        </div>
+      );
+    },
+  },
 ];
