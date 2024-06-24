@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
+import { CustomerRow } from '@/types/customer';
 
 const filterByCustomer: FilterFn<CustomerRow> = (
   row: Row<CustomerRow>,

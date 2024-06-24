@@ -1,7 +1,7 @@
 'use client';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
-import { DataTable } from '../ui/data-table';
+import { DataTable } from '../../ui/data-table';
 import { Product } from '@/types/customer';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
