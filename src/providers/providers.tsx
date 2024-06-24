@@ -3,13 +3,19 @@ import { PropsWithChildren } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { getQueryClient } from '@/lib/utils/get-query-client';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 
 export default function Providers({ children }: PropsWithChildren) {
   const queryClient = getQueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <Sheet>
+        {children}
+        <SheetContent side='left'>
+          <h1>Hello world</h1>
+        </SheetContent>
+      </Sheet>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
