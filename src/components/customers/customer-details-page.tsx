@@ -2,6 +2,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
 import { DataTable } from '../ui/data-table';
+import { Product } from '@/types/customer';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getCustomerOptions(id));
@@ -14,7 +15,14 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
   //   }, new Set<Product>()),
   // );
 
-  console.log(data.budgets);
+  const products: Product[] = Array.from(
+    data.budgets.reduce<Set<Product>>((acc, b) => {
+      b.products.forEach((p) => acc.add(p));
+      return acc;
+    }, new Set<Product>()),
+  );
+
+  console.log(products);
 
   return (
     <div>
