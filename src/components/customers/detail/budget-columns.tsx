@@ -26,5 +26,21 @@ export const budgetColumns: ColumnDef<BudgetWithAmount>[] = [
   },
   {
     accessorKey: 'amount',
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Amount
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className='text-center'>{row.original.amount}</div>;
+    },
   },
 ];
