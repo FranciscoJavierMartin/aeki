@@ -54,7 +54,7 @@ export const productColumns: ColumnDef<CustomerProductItem>[] = [
     },
     cell: ({ row }) => {
       const quantity = parseFloat(row.getValue('quantity'));
-      return <div className='text-right font-medium'>{quantity}</div>;
+      return <div className='text-right'>{quantity}</div>;
     },
   },
   {
@@ -79,7 +79,7 @@ export const productColumns: ColumnDef<CustomerProductItem>[] = [
         currency: 'USD',
       }).format(amount);
 
-      return <div className='text-right font-medium'>{formatted}</div>;
+      return <div className='text-right'>{formatted}</div>;
     },
   },
 ];
