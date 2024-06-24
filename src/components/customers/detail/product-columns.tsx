@@ -8,20 +8,6 @@ export type CustomerProductItem = ProductInBudget & { quantity: number };
 
 export const productColumns: ColumnDef<CustomerProductItem>[] = [
   {
-    accessorKey: 'name',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Name
-          <SortedIcon isSorted={column.getIsSorted()} />
-        </Button>
-      );
-    },
-  },
-  {
     accessorKey: 'photoURL',
     header: '',
     size: 30,
@@ -38,8 +24,38 @@ export const productColumns: ColumnDef<CustomerProductItem>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: 'name',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Name
+          <SortedIcon isSorted={column.getIsSorted()} />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: 'quantity',
-    header: 'Quantity',
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Quantity
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const quantity = parseFloat(row.getValue('quantity'));
+      return <div className='text-right font-medium'>{quantity}</div>;
+    },
   },
   {
     accessorKey: 'price',
