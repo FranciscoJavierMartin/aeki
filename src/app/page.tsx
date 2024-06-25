@@ -11,7 +11,6 @@ export default function Home() {
       <div className='flex h-[calc(100vh-64px)] items-center justify-center bg-blue-400'>
         <TypeEffect textCompleted={textCompleted} />
       </div>
-      {/* <SheetSide /> */}
     </div>
   );
 }

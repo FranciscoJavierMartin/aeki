@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import Link from 'next/link';
 import {
   Sheet,
   SheetClose,
@@ -7,7 +8,6 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import NavLink from '@/components/drawer-menu/nav-link';
-import Link from 'next/link';
 
 const navLinks = [
   {
