@@ -3,9 +3,9 @@ import { PropsWithChildren } from 'react';
 
 export default function BaseLayout({ children }: PropsWithChildren) {
   return (
-    <div>
+    <>
       <Header />
-      <div>{children}</div>
-    </div>
+      {children}
+    </>
   );
 }
