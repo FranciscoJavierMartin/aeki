@@ -64,10 +64,10 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      {/* <div className='grid grid-cols-1 gap-5 md:grid-cols-2 w-full'>
+      <div className='grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
         <DataTable data={products} columns={productColumns} />
         <DataTable data={budgets} columns={budgetColumns} />
-      </div> */}
+      </div>
     </div>
   );
 }
