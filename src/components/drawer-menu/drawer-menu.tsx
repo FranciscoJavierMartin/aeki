@@ -27,7 +27,6 @@ const navLinks = [
 ];
 
 export default function Providers({ children }: PropsWithChildren) {
-  console.log(window.location.pathname);
   return (
     <Sheet>
       {children}
