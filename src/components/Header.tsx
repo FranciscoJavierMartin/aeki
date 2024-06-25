@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SheetTrigger } from '@/components/ui/sheet';
+import ThemeSwitcher from '@/components/drawer-menu/theme-switcher';
 
 const navLinks = [
   {
@@ -44,17 +45,20 @@ export default function Header() {
         </button>
       </SheetTrigger>
       <span className='p-3 text-4xl text-white'>Aeki</span>
-      <nav className='hidden justify-end text-right text-2xl transition-all duration-300 ease-in md:flex'>
-        {navLinks.map((navLink) => (
-          <Link
-            href={navLink.href}
-            key={navLink.href}
-            className='p-3 text-white hover:bg-black hover:bg-opacity-30'
-          >
-            {navLink.text}
-          </Link>
-        ))}
-      </nav>
+      <div className='flex gap-x-2'>
+        <ThemeSwitcher />
+        <nav className='hidden justify-end text-right text-2xl transition-all duration-300 ease-in md:flex'>
+          {navLinks.map((navLink) => (
+            <Link
+              href={navLink.href}
+              key={navLink.href}
+              className='p-3 text-white hover:bg-black hover:bg-opacity-30'
+            >
+              {navLink.text}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

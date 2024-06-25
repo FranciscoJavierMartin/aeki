@@ -13,7 +13,7 @@ export default function ThemeSwitcher() {
         checked={isDark}
         onCheckedChange={() => setIsDark((prev) => !prev)}
       />
-      <Label htmlFor='theme-switch' className='text-xl'>
+      <Label htmlFor='theme-switch' className='text-xl md:hidden'>
         Dark mode
       </Label>
     </div>
