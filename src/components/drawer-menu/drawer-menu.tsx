@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -36,14 +37,15 @@ export default function Providers({ children }: PropsWithChildren) {
         </SheetHeader>
         <div className='mt-5 flex flex-col gap-4 py-4 text-xl'>
           {navLinks.map((navLink) => (
-            <NavLink
-              key={navLink.href}
-              href={navLink.href}
-              className='rounded-lg py-2 pl-4 pr-3 hover:bg-slate-700'
-              activeClass='bg-slate-700'
-            >
-              {navLink.text}
-            </NavLink>
+            <SheetClose asChild key={navLink.href}>
+              <NavLink
+                href={navLink.href}
+                className='rounded-lg py-2 pl-4 pr-3 hover:bg-slate-700'
+                activeClass='bg-slate-700'
+              >
+                {navLink.text}
+              </NavLink>
+            </SheetClose>
           ))}
         </div>
       </SheetContent>

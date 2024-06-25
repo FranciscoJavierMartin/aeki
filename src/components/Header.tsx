@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header className='flex w-full flex-row-reverse items-center justify-between bg-slate-900 md:flex-row'>
       <SheetTrigger asChild className='md:hidden'>
-        <Button variant='ghost'>
+        <button className='mr-4 bg-transparent'>
           <span className='sr-only'>Open menu</span>
           <svg
             className='size-7 text-white'
@@ -42,7 +42,7 @@ export default function Header() {
               d='M1 1h15M1 7h15M1 13h15'
             ></path>
           </svg>
-        </Button>
+        </button>
       </SheetTrigger>
       <span className='p-3 text-4xl text-white'>Aeki</span>
       <nav className='hidden justify-end text-right text-2xl transition-all duration-300 ease-in md:flex'>
