@@ -8,6 +8,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import NavLink from '@/components/drawer-menu/nav-link';
+import ThemeSwitch from '../theme-switch';
 
 const navLinks = [
   {
@@ -52,6 +53,7 @@ export default function Providers({ children }: PropsWithChildren) {
               </NavLink>
             </SheetClose>
           ))}
+          <ThemeSwitch />
         </div>
       </SheetContent>
     </Sheet>

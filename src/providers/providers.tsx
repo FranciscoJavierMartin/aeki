@@ -13,6 +13,15 @@ export default function Providers({ children }: PropsWithChildren) {
     localStorage.setItem('theme', theme);
   }
 
+  function onLoad(): void {
+    const themeSwitch = document.getElementById('theme-checkbox');
+
+    if (themeSwitch) {
+      (themeSwitch as HTMLInputElement).checked =
+        localStorage.getItem('theme') === 'dark' ? true : false;
+    }
+  }
+
   useEffect(() => {
     const theme = localStorage.getItem('theme');
     if (theme) {
@@ -20,6 +29,8 @@ export default function Providers({ children }: PropsWithChildren) {
     } else {
       setTheme('light');
     }
+
+    onLoad();
   }, []);
 
   return (
