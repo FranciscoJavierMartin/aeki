@@ -1,5 +1,6 @@
 'use client';
 import { PropsWithChildren } from 'react';
+import { ThemeProvider } from 'next-themes';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { getQueryClient } from '@/lib/utils/get-query-client';
@@ -10,7 +11,9 @@ export default function Providers({ children }: PropsWithChildren) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <DrawerMenu>{children}</DrawerMenu>
+      <ThemeProvider>
+        <DrawerMenu>{children}</DrawerMenu>
+      </ThemeProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
