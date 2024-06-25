@@ -7,6 +7,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import NavLink from '@/components/drawer-menu/nav-link';
+import Link from 'next/link';
 
 const navLinks = [
   {
@@ -33,7 +34,11 @@ export default function Providers({ children }: PropsWithChildren) {
       {children}
       <SheetContent side='left' className='bg-slate-900 text-white'>
         <SheetHeader>
-          <SheetTitle className='text-4xl text-white'>Aeki</SheetTitle>
+          <SheetTitle className='text-4xl text-white'>
+            <SheetClose asChild>
+              <Link href='/'>Aeki</Link>
+            </SheetClose>
+          </SheetTitle>
         </SheetHeader>
         <div className='mt-5 flex flex-col gap-4 py-4 text-xl'>
           {navLinks.map((navLink) => (
