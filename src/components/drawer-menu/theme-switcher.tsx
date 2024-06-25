@@ -9,11 +9,11 @@ export default function ThemeSwitcher() {
   return (
     <div className='ml-2 flex items-center gap-x-4'>
       <Switch
-        id='airplane-mode'
+        id='theme-switch'
         checked={isDark}
         onCheckedChange={() => setIsDark((prev) => !prev)}
       />
-      <Label htmlFor='airplane-mode' className='text-xl'>
+      <Label htmlFor='theme-switch' className='text-xl'>
         Dark mode
       </Label>
     </div>
