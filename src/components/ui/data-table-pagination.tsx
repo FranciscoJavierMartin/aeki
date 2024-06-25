@@ -27,7 +27,7 @@ export function DataTablePagination<TData>({
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
-      <div className='flex flex-col max-md:w-full md:flex-row md:items-center md:space-x-6 lg:space-x-8'>
+      <div className='flex flex-col gap-y-3 max-md:w-full md:flex-row md:items-center md:space-x-6 lg:space-x-8'>
         <div className='flex items-center space-x-2 max-md:justify-between'>
           <p className='text-sm font-medium'>Rows per page</p>
           <Select
@@ -48,12 +48,8 @@ export function DataTablePagination<TData>({
             </SelectContent>
           </Select>
         </div>
-        <div className='flex items-start justify-start max-md:w-full'>
-          <div className='flex h-8 w-[100px] items-center text-sm font-medium md:justify-center'>
-            Page {table.getState().pagination.pageIndex + 1} of{' '}
-            {table.getPageCount()}
-          </div>
-          <div className='flex space-x-2 md:items-center'>
+        <div className='flex items-start justify-center max-md:w-full md:justify-start'>
+          <div className='flex md:items-center md:space-x-2'>
             <Button
               variant='outline'
               className='hidden h-8 w-8 p-0 lg:flex'
@@ -72,6 +68,10 @@ export function DataTablePagination<TData>({
               <span className='sr-only'>Go to previous page</span>
               <ChevronLeftIcon className='h-4 w-4' />
             </Button>
+            <div className='flex h-8 w-[100px] items-center justify-center text-sm font-medium'>
+              Page {table.getState().pagination.pageIndex + 1} of{' '}
+              {table.getPageCount()}
+            </div>
             <Button
               variant='outline'
               className='h-8 w-8 p-0'
