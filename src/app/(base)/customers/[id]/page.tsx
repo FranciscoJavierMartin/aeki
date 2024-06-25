@@ -9,10 +9,8 @@ export default function CustomerPage({ params }: { params: { id: string } }) {
   void queryClient.prefetchQuery(getCustomerOptions(params.id));
 
   return (
-    <div>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <CustomerDetailsPage id={params.id} />
-      </HydrationBoundary>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CustomerDetailsPage id={params.id} />
+    </HydrationBoundary>
   );
 }

@@ -36,15 +36,15 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
   }));
 
   return (
-    <div className='flex max-w-[100vw] flex-col gap-10 p-3'>
-      <div className='my-10 flex w-full justify-center'>
-        <div className='flex gap-5 rounded-2xl bg-slate-100 p-5'>
+    <div className='flex w-full flex-col gap-10 md:p-3'>
+      <div className='flex w-full justify-center md:my-10'>
+        <div className='flex flex-col items-center gap-5 p-5 max-md:w-full md:flex-row md:rounded-2xl md:bg-slate-100'>
           <div className='flex size-40 items-center justify-center rounded-full bg-slate-900 text-8xl text-white'>
             <span>
               {`${data.firstName.charAt(0)}${data.lastName.charAt(0)}`}
             </span>
           </div>
-          <div className='flex flex-col justify-center'>
+          <div className='flex flex-col justify-center text-center md:text-start'>
             <h1 className='text-5xl'>
               {data.firstName} {data.lastName}
             </h1>
@@ -64,10 +64,10 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+      {/* <div className='grid grid-cols-1 gap-5 md:grid-cols-2 w-full'>
         <DataTable data={products} columns={productColumns} />
         <DataTable data={budgets} columns={budgetColumns} />
-      </div>
+      </div> */}
     </div>
   );
 }
