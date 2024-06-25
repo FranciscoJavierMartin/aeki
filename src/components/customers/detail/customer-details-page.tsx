@@ -64,7 +64,7 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className='grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
+      <div className='mb-10 grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
         <DataTable data={products} columns={productColumns} />
         <DataTable data={budgets} columns={budgetColumns} />
       </div>
