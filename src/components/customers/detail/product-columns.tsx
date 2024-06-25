@@ -54,7 +54,7 @@ export const productColumns: ColumnDef<CustomerProductItem>[] = [
     },
     cell: ({ row }) => {
       const quantity = parseFloat(row.getValue('quantity'));
-      return <div className='text-right'>{quantity}</div>;
+      return <div className='text-center md:text-right'>{quantity}</div>;
     },
   },
   {
