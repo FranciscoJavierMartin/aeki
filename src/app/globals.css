@@ -77,11 +77,13 @@
 
 @layer components {
   #theme-checkbox:checked + label {
-    & .moon {
+    /* Moon */
+    :first-child {
       @apply translate-x-0 rotate-0 opacity-100;
     }
 
-    & .sun {
+    /* Sun */
+    :nth-child(2) {
       @apply -translate-x-11 rotate-[160deg] opacity-0;
     }
 

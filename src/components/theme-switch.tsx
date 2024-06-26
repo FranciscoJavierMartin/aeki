@@ -30,7 +30,7 @@ export default function ThemeSwitch() {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='moon size-[18px] translate-x-11 rotate-[250deg] text-white opacity-0 duration-500'
+          className='size-[18px] translate-x-11 rotate-[250deg] text-white opacity-0 duration-500'
         >
           <path
             strokeLinecap='round'
@@ -45,7 +45,7 @@ export default function ThemeSwitch() {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='sun size-[18px] text-yellow-300 opacity-100 duration-500'
+          className='size-[18px] text-yellow-300 opacity-100 duration-500'
         >
           <path
             strokeLinecap='round'
