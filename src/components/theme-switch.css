@@ -10,27 +10,43 @@ label {
   cursor: pointer;
   position: relative;
 
-  & .sun {
+  .sun {
     color: gold;
     transition: 0.8s;
+    opacity: 1;
   }
 
-  & .moon {
+  .moon {
     color: #fff;
     transition: 0.8s;
+    opacity: 0;
   }
 
-  & .ball {
-    display: none;
+  .ball {
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 5px;
+    left: 5px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.8s;
   }
 }
 
 input:checked + label {
   & .sun {
     transform: translateX(-43px);
+    opacity: 0;
   }
 
   & .moon {
     transform: translateX(43px);
+    opacity: 1;
+  }
+
+  .ball {
+    transform: translateX(40px);
   }
 }
