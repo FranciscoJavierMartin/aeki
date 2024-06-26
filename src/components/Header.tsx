@@ -23,7 +23,7 @@ const navLinks = [
 
 export default function Header() {
   return (
-    <header className='flex w-full flex-row-reverse items-center justify-between bg-slate-900 md:flex-row'>
+    <header className='flex w-full flex-row-reverse items-center justify-between text-black dark:bg-slate-900 dark:text-white md:flex-row'>
       <SheetTrigger asChild className='md:hidden'>
         <button className='mr-4 bg-transparent'>
           <span className='sr-only'>Open menu</span>
@@ -44,7 +44,7 @@ export default function Header() {
           </svg>
         </button>
       </SheetTrigger>
-      <Link href='/' className='p-3 text-4xl text-white'>
+      <Link href='/' className='p-3 text-4xl'>
         Aeki
       </Link>
       <div className='hidden items-center gap-x-2 md:flex'>
@@ -54,7 +54,7 @@ export default function Header() {
             <Link
               href={navLink.href}
               key={navLink.href}
-              className='p-3 text-white hover:bg-black hover:bg-opacity-30'
+              className='p-3 hover:bg-slate-200 hover:bg-opacity-30 dark:hover:bg-black'
             >
               {navLink.text}
             </Link>
