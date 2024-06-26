@@ -77,14 +77,13 @@
 
 @layer components {
   #theme-checkbox:checked + label {
-    & .sun {
-      transform: translateX(-43px) rotate(160deg);
-      @apply opacity-0;
-    }
-
     & .moon {
       transform: translateX(0) rotate(0);
       @apply opacity-100;
+    }
+
+    & .sun {
+      @apply -translate-x-11 rotate-[160deg] opacity-0;
     }
 
     .ball {
