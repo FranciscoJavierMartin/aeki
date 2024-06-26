@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SheetTrigger } from '@/components/ui/sheet';
 import ThemeSwitch from '@/components/theme-switch';
+import NavLink from './drawer-menu/nav-link';
 
 const navLinks = [
   {
@@ -51,13 +52,14 @@ export default function Header() {
         <ThemeSwitch />
         <nav className='hidden justify-end text-right text-2xl transition-all duration-300 ease-in md:flex'>
           {navLinks.map((navLink) => (
-            <Link
+            <NavLink
               href={navLink.href}
               key={navLink.href}
-              className='p-3 hover:bg-slate-200 hover:bg-opacity-30 dark:hover:bg-black'
+              className='p-3 hover:bg-slate-200 hover:bg-opacity-30 dark:hover:bg-slate-700'
+              activeClass='dark:bg-slate-800 bg-gray-50 border-b-4 border-blue-400'
             >
               {navLink.text}
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </div>
