@@ -78,8 +78,7 @@
 @layer components {
   #theme-checkbox:checked + label {
     & .moon {
-      transform: translateX(0) rotate(0);
-      @apply opacity-100;
+      @apply translate-x-0 rotate-0 opacity-100;
     }
 
     & .sun {
