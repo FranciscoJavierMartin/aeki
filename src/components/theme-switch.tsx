@@ -2,11 +2,11 @@ import './theme-switch.css';
 
 export default function ThemeSwitch() {
   return (
-    <div className='switch-container'>
+    <>
       <input
         id='theme-checkbox'
         type='checkbox'
-        className='hidden'
+        className='peer hidden'
         onClick={() => {
           const theme = document.documentElement.className;
 
@@ -19,7 +19,10 @@ export default function ThemeSwitch() {
           }
         }}
       />
-      <label htmlFor='theme-checkbox'>
+      <label
+        htmlFor='theme-checkbox'
+        className='relative flex h-[35px] w-[75px] cursor-pointer items-center justify-between rounded-full bg-gray-950 px-1.5 duration-500'
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -51,6 +54,6 @@ export default function ThemeSwitch() {
 
         <span className='ball' />
       </label>
-    </div>
+    </>
   );
 }

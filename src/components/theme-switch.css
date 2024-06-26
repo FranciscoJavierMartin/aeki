@@ -1,26 +1,14 @@
 label {
-  display: flex;
-  width: 75px;
-  height: 35px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 6px;
-  background: #222;
-  border-radius: 50px;
-  cursor: pointer;
-  position: relative;
-  transition: 0.3s;
-
   .sun {
     color: gold;
-    transition: 0.3s;
+    transition: 0.5s;
     opacity: 1;
   }
 
   .moon {
     color: #fff;
     transform: translateX(43px) rotate(250deg);
-    transition: 0.3s;
+    transition: 0.5s;
     opacity: 0;
   }
 
@@ -33,7 +21,7 @@ label {
     left: 5px;
     background: #fff;
     border-radius: 50%;
-    transition: 0.3s;
+    transition: 0.5s;
   }
 }
 
