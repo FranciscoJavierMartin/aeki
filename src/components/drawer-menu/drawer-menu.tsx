@@ -33,10 +33,7 @@ export default function Providers({ children }: PropsWithChildren) {
   return (
     <Sheet>
       {children}
-      <SheetContent
-        side='left'
-        className='bg-slate-50 dark:bg-slate-900 dark:text-white'
-      >
+      <SheetContent side='left' className='bg-slate-50 dark:bg-slate-900'>
         <SheetHeader>
           <SheetTitle className='text-4xl'>
             <SheetClose asChild>
