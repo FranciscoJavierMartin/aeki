@@ -10,8 +10,8 @@ export default function CustomersPage() {
 
   return (
     <div>
-      <h1>Customers</h1>
       <div className='container mx-auto py-10'>
+        <h1 className='mb-5 text-center text-4xl'>Customers</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <CustomersTable />
         </HydrationBoundary>
