@@ -74,3 +74,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  #theme-checkbox:checked + label {
+    & .sun {
+      transform: translateX(-43px) rotate(160deg);
+      @apply opacity-0;
+    }
+
+    & .moon {
+      transform: translateX(0) rotate(0);
+      @apply opacity-100;
+    }
+
+    .ball {
+      transform: translateX(40px);
+      @apply bg-gray-950;
+    }
+  }
+}
