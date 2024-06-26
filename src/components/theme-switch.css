@@ -1,11 +1,4 @@
 label {
-  .moon {
-    color: #fff;
-    transform: translateX(43px) rotate(250deg);
-    transition: 0.5s;
-    opacity: 0;
-  }
-
   .ball {
     display: block;
     position: absolute;
