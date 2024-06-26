@@ -52,7 +52,7 @@ export default function ThemeSwitch() {
           />
         </svg>
 
-        <span className='ball' />
+        <span className='ball absolute left-[5px] top-[5px] size-6 bg-white rounded-[50%] duration-500' />
       </label>
     </>
   );
