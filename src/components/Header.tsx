@@ -28,7 +28,7 @@ export default function Header() {
         <button className='mr-4 bg-transparent'>
           <span className='sr-only'>Open menu</span>
           <svg
-            className='size-7 text-white'
+            className='size-7'
             aria-hidden='true'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
