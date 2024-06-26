@@ -38,8 +38,8 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
       <div className='flex w-full justify-center md:my-10'>
-        <div className='flex flex-col items-center gap-5 p-5 max-md:w-full md:flex-row md:rounded-2xl md:bg-slate-100'>
-          <div className='flex size-40 items-center justify-center rounded-full bg-slate-900 text-8xl text-white'>
+        <div className='flex flex-col items-center gap-5 p-5 max-md:w-full md:flex-row md:rounded-2xl md:bg-slate-100 dark:md:bg-slate-800'>
+          <div className='flex size-40 items-center justify-center rounded-full bg-slate-900 text-8xl text-white dark:bg-slate-700'>
             <span>
               {`${data.firstName.charAt(0)}${data.lastName.charAt(0)}`}
             </span>
@@ -50,17 +50,19 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
             </h1>
             <a
               href={`mailto:${data.email}`}
-              className='mb-2 font-normal text-slate-500'
+              className='mb-2 font-normal text-slate-500 dark:text-slate-100'
             >
               {data.email}
             </a>
             <a
               href={`tel:${data.phone}`}
-              className='font-normal text-slate-500'
+              className='font-normal text-slate-500 dark:text-slate-100'
             >
               {data.phone}
             </a>
-            <div className='font-normal text-slate-500'>{data.dni}</div>
+            <div className='font-normal text-slate-500 dark:text-slate-100'>
+              {data.dni}
+            </div>
           </div>
         </div>
       </div>
