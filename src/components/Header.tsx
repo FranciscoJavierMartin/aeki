@@ -23,7 +23,7 @@ const navLinks = [
 
 export default function Header() {
   return (
-    <header className='flex w-full flex-row-reverse items-center justify-between text-black dark:bg-slate-900 dark:text-white md:flex-row'>
+    <header className='flex w-full flex-row-reverse items-center justify-between dark:bg-slate-900 md:flex-row'>
       <SheetTrigger asChild className='md:hidden'>
         <button className='mr-4 bg-transparent'>
           <span className='sr-only'>Open menu</span>

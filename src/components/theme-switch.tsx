@@ -3,6 +3,7 @@
 export default function ThemeSwitch() {
   return (
     <>
+      {/* FIXME: Checkbox cause problems in mobile devices */}
       <input
         id='theme-checkbox'
         type='checkbox'
