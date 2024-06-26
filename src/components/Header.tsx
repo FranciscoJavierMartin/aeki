@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SheetTrigger } from '@/components/ui/sheet';
 import ThemeSwitch from '@/components/theme-switch';
-import NavLink from './drawer-menu/nav-link';
+import NavLink from '@/components/drawer-menu/nav-link';
 
 const navLinks = [
   {
