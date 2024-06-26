@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
+      <body className='text-black dark:bg-gray-900 dark:text-white'>
         <Providers>
           {children}
           <Toaster />

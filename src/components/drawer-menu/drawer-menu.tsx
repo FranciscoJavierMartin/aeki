@@ -8,6 +8,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import NavLink from '@/components/drawer-menu/nav-link';
+import ThemeSwitch from '@/components/theme-switch';
 
 const navLinks = [
   {
@@ -32,9 +33,9 @@ export default function Providers({ children }: PropsWithChildren) {
   return (
     <Sheet>
       {children}
-      <SheetContent side='left' className='bg-slate-900 text-white'>
+      <SheetContent side='left' className='bg-slate-50 dark:bg-slate-900'>
         <SheetHeader>
-          <SheetTitle className='text-4xl text-white'>
+          <SheetTitle className='text-4xl'>
             <SheetClose asChild>
               <Link href='/'>Aeki</Link>
             </SheetClose>
@@ -46,12 +47,13 @@ export default function Providers({ children }: PropsWithChildren) {
               <NavLink
                 href={navLink.href}
                 className='rounded-lg py-2 pl-4 pr-3 hover:bg-slate-700'
-                activeClass='bg-slate-700'
+                activeClass='dark:bg-slate-700 bg-slate-200'
               >
                 {navLink.text}
               </NavLink>
             </SheetClose>
           ))}
+          <ThemeSwitch />
         </div>
       </SheetContent>
     </Sheet>

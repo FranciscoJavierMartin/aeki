@@ -74,3 +74,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* TODO: Refactor when migrate to TailwindCSS v4 */
+  #theme-checkbox:checked + label {
+    /* Moon */
+    svg:nth-of-type(1) {
+      @apply translate-x-0 rotate-0 opacity-100;
+    }
+
+    /* Sun */
+    svg:nth-of-type(2) {
+      @apply -translate-x-11 rotate-[160deg] opacity-0;
+    }
+
+    /* Ball */
+    span:nth-of-type(1) {
+      transform: translateX(40px);
+      @apply bg-gray-950;
+    }
+  }
+}
