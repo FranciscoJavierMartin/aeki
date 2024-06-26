@@ -13,14 +13,14 @@ label {
 
   .sun {
     color: gold;
-    transition: 0.8s;
+    transition: 0.3s;
     opacity: 1;
   }
 
   .moon {
     color: #fff;
     transform: translateX(43px);
-    transition: 0.8s;
+    transition: 0.3s;
     opacity: 0;
   }
 
@@ -33,11 +33,13 @@ label {
     left: 5px;
     background: #fff;
     border-radius: 50%;
-    transition: 0.8s;
+    transition: 0.3s;
   }
 }
 
 input:checked + label {
+  background: #c0c0c0;
+
   & .sun {
     transform: translateX(-43px);
     opacity: 0;
@@ -50,5 +52,6 @@ input:checked + label {
 
   .ball {
     transform: translateX(40px);
+    background: #222;
   }
 }

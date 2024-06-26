@@ -3,7 +3,7 @@ import './theme-switch.css';
 export default function ThemeSwitch() {
   return (
     <div className='switch-container'>
-      <input id='theme-checkbox' type='checkbox' />
+      <input id='theme-checkbox' type='checkbox' className='hidden' />
       <label htmlFor='theme-checkbox'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
