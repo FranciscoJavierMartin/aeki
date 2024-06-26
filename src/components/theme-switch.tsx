@@ -3,7 +3,22 @@ import './theme-switch.css';
 export default function ThemeSwitch() {
   return (
     <div className='switch-container'>
-      <input id='theme-checkbox' type='checkbox' className='hidden' />
+      <input
+        id='theme-checkbox'
+        type='checkbox'
+        className='hidden'
+        onClick={() => {
+          const theme = document.documentElement.className;
+
+          if (theme === 'light') {
+            document.documentElement.className = 'dark';
+            localStorage.setItem('theme', 'dark');
+          } else {
+            document.documentElement.className = 'light';
+            localStorage.setItem('theme', 'light');
+          }
+        }}
+      />
       <label htmlFor='theme-checkbox'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
