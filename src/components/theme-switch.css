@@ -19,7 +19,7 @@ label {
 
   .moon {
     color: #fff;
-    transform: translateX(43px);
+    transform: translateX(43px) rotate(250deg);
     transition: 0.3s;
     opacity: 0;
   }
@@ -41,12 +41,12 @@ input:checked + label {
   background: #c0c0c0;
 
   & .sun {
-    transform: translateX(-43px);
+    transform: translateX(-43px) rotate(160deg);
     opacity: 0;
   }
 
   & .moon {
-    transform: translateX(0);
+    transform: translateX(0) rotate(0);
     opacity: 1;
   }
 
