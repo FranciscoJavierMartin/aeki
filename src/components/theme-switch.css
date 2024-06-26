@@ -1,6 +1,4 @@
 input:checked + label {
-  background: #c0c0c0;
-
   & .sun {
     transform: translateX(-43px) rotate(160deg);
     opacity: 0;
