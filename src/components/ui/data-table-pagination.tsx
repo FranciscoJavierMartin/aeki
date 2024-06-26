@@ -34,7 +34,7 @@ export function DataTablePagination<TData>({
         </div>
       )}
       <div className='flex flex-col gap-y-3 max-md:w-full md:flex-row md:items-center md:space-x-6 lg:space-x-8'>
-        <div className='flex items-center space-x-2 max-md:justify-between'>
+        <div className='flex items-center justify-start space-x-2'>
           <p className='text-sm font-medium'>Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
