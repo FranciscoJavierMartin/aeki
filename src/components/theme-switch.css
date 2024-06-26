@@ -1,10 +1,4 @@
 label {
-  .sun {
-    color: gold;
-    transition: 0.5s;
-    opacity: 1;
-  }
-
   .moon {
     color: #fff;
     transform: translateX(43px) rotate(250deg);
