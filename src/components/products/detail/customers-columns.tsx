@@ -40,4 +40,16 @@ export const customerColumns: ColumnDef<Customer>[] = [
       );
     },
   },
+  {
+    accessorKey: 'firstName',
+    header: () => {
+      return <div className='text-center'>First name</div>;
+    },
+  },
+  {
+    accessorKey: 'lastName',
+    header: () => {
+      return <div className='text-center'>Last name</div>;
+    },
+  },
 ];
