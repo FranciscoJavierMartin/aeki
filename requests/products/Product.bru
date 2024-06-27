@@ -14,3 +14,22 @@ assert {
   res.status: eq 200
   res.body.product: neq null
 }
+
+tests {
+  test('product contains name', () => {
+    const { product } = res.getBody();
+    expect(product.name).to.be.a('string');
+    expect(product.name).to.not.equal('');
+  })
+  
+  test('product contains photoURL', () => {
+    const { product } = res.getBody();
+    expect(product.photoURL).to.be.a('string');
+    expect(product.photoURL).to.not.equal('');
+  })
+  
+  test('product contains price', () => {
+    const { product } = res.getBody();
+    expect(product.price).to.be.a('number');
+  })
+}

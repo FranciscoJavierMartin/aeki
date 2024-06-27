@@ -14,6 +14,7 @@ import {
 export default function CustomerDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getCustomerOptions(id));
 
+  // TODO: Move to API
   const products: CustomerProductItem[] = data.budgets.reduce<
     CustomerProductItem[]
   >((acc, b) => {
