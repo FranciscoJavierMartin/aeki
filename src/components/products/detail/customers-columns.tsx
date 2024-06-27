@@ -14,4 +14,17 @@ export const customerColumns: ColumnDef<Customer>[] = [
       );
     },
   },
+  {
+    accessorKey: 'dni',
+    header: () => {
+      return <div className='text-center'>DNI</div>;
+    },
+    cell: ({ row }) => {
+      return (
+        <div className='text-center'>
+          <span>{row.original.dni}</span>
+        </div>
+      );
+    },
+  },
 ];
