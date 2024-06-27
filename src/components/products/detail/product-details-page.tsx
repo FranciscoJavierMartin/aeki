@@ -21,9 +21,13 @@ export default function ProductDetailsPage({ id }: { id: string }) {
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
       <div className='flex w-full justify-center md:my-10'>
-        <div className='grid grid-cols-[3fr_2fr]'>
-          <img src={data.photoURL} alt={data.name} className='rounded-2xl' />
-          <div className='flex flex-col'>
+        <div className='flex gap-x-7'>
+          <img
+            src={data.photoURL}
+            alt={data.name}
+            className='w-3/5 rounded-2xl'
+          />
+          <div className='flex w-2/5 flex-col'>
             <h1 className='mb-5 mt-3 text-right text-5xl'>{data.name}</h1>
             <span className='mb-2 text-right text-3xl font-light'>{price}</span>
             <button
