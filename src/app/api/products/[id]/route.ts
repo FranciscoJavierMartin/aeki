@@ -7,6 +7,13 @@ export async function GET(
 ) {
   const product = await prismaClient.product.findUnique({
     where: { id: params.id },
+    include: {
+      budgets: {
+        select: {
+          Budget: { include: { Customer: true } },
+        },
+      },
+    },
   });
   return NextResponse.json({ product });
 }
