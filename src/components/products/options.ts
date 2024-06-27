@@ -18,7 +18,7 @@ async function getProduct(id: string) {
     `http://localhost:4230/api/products/${id}`,
   ).then((res) => res.json());
 
-  return product as any;
+  return product as Product;
 }
 
 export function getProductOptions(id: string) {
