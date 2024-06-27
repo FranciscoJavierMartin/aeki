@@ -21,33 +21,17 @@ export default function ProductDetailsPage({ id }: { id: string }) {
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
       <div className='flex w-full justify-center md:my-10'>
-        <div className='flex flex-col items-center gap-5 p-5 max-md:w-full md:flex-row md:rounded-2xl md:bg-slate-100 dark:md:bg-slate-800'>
-          <div className='flex size-40 items-center justify-center rounded-full text-8xl text-white'>
-            <img src={data.photoURL} width={160} height={160} />
-          </div>
-          <div className='flex flex-col justify-center text-center md:text-start'>
-            <h1 className='text-5xl'>
-              {/* {data.firstName} {data.lastName} */}
-              {data.name}
-            </h1>
-            <span
-              // href={`mailto:${data.email}`}
-              className='mb-2 text-right font-normal text-slate-500 dark:text-slate-100'
-            >
-              {price}
-              {/* {data.email} */}
-            </span>
-            <button
-              className='text-right font-normal text-slate-500 dark:text-slate-100'
-              onClick={() => {
-                navigator.clipboard.writeText(data.id);
-                toast('Product ID copied to clipboard');
-              }}
-            >
-              {data.id}
-            </button>
-            <div className='font-normal text-slate-500 dark:text-slate-100'>
-              {/* {data.dni} */}
+        <div className='grid grid-cols-[3fr_2fr]'>
+          <img src={data.photoURL} alt={data.name} className='rounded-2xl' />
+          <div className='flex flex-col'>
+            <h1 className='mb-5 mt-3 text-right text-5xl'>{data.name}</h1>
+            <span className='mb-2 text-right text-3xl font-light'>{price}</span>
+            <button className='text-right'>{data.id}</button>
+            <div className='mt-12 grid w-full grid-cols-2 gap-2'>
+              <span className='font-semibold'>Total purchases</span>
+              <span className='text-right'>12</span>
+              <span className='font-semibold'>Different customers</span>
+              <span className='text-right'>40</span>
             </div>
           </div>
         </div>
