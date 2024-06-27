@@ -14,11 +14,15 @@ export const productsOptions = queryOptions({
 });
 
 async function getProduct(id: string) {
-  const { product } = await fetch(
+  const { product, customers, budgets } = await fetch(
     `http://localhost:4230/api/products/${id}`,
   ).then((res) => res.json());
 
-  return product as Product;
+  return { product, customers, budgets } as {
+    product: Product;
+    customers: Customer[];
+    budgets: Budget[];
+  };
 }
 
 export function getProductOptions(id: string) {

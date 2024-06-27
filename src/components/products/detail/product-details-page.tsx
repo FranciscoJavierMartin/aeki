@@ -5,17 +5,17 @@ import { toast } from 'sonner';
 import { getProductOptions } from '@/components/products/options';
 
 export default function ProductDetailsPage({ id }: { id: string }) {
-  const { data } = useSuspenseQuery(getProductOptions(id));
-
-  console.log(data);
+  const {
+    data: { product, customers, budgets },
+  } = useSuspenseQuery(getProductOptions(id));
 
   const price = useMemo(
     () =>
       new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-      }).format(+data.price),
-    [data.price],
+      }).format(product.price),
+    [product.price],
   );
 
   return (
@@ -23,21 +23,21 @@ export default function ProductDetailsPage({ id }: { id: string }) {
       <div className='flex w-full justify-center md:my-10'>
         <div className='flex flex-col gap-x-7 p-5 md:flex-row'>
           <img
-            src={data.photoURL}
-            alt={data.name}
+            src={product.photoURL}
+            alt={product.name}
             className='w-full rounded-2xl md:w-3/5'
           />
           <div className='flex w-full flex-col md:w-2/5'>
-            <h1 className='mb-5 mt-3 text-5xl md:text-right'>{data.name}</h1>
+            <h1 className='mb-5 mt-3 text-5xl md:text-right'>{product.name}</h1>
             <span className='mb-2 text-right text-3xl font-light'>{price}</span>
             <button
-              className='md:mt-0 text-center mt-5 md:text-right'
+              className='mt-5 text-center md:mt-0 md:text-right'
               onClick={() => {
-                navigator.clipboard.writeText(data.id);
+                navigator.clipboard.writeText(product.id);
                 toast('Product ID copied to clipboard');
               }}
             >
-              {data.id}
+              {product.id}
             </button>
             <div className='mt-12 grid w-full grid-cols-2 gap-2'>
               <span className='font-semibold'>Total purchases</span>
