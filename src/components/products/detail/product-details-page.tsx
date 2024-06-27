@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { getProductOptions } from '@/components/products/options';
+import { budgetColumns } from '@/components/products/detail/budget-column';
+import { DataTable } from '@/components/ui/data-table';
 
 export default function ProductDetailsPage({ id }: { id: string }) {
   const {
@@ -49,7 +51,7 @@ export default function ProductDetailsPage({ id }: { id: string }) {
         </div>
       </div>
       <div className='mb-10 grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
-        {/* <DataTable data={products} columns={productColumns} /> */}
+        <DataTable data={budgets} columns={budgetColumns} />
         {/* <DataTable data={budgets} columns={budgetColumns} /> */}
       </div>
     </div>
