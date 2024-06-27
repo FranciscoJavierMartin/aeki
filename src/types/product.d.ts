@@ -9,5 +9,14 @@ type Product = {
   id: string;
   name: string;
   photoURL: string;
-  price: string;
+  price: number;
+};
+
+type Customer = {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dni: string;
 };
