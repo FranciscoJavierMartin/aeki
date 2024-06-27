@@ -8,12 +8,18 @@ export async function GET(
   let product: Product = {} as Product;
   let customers: Customer[] = [];
   let budgets: Budget[] = [];
+
   const data = await prismaClient.product.findUnique({
     where: { id: params.id },
     include: {
       budgets: {
         select: {
-          Budget: { include: { Customer: true } },
+          Budget: {
+            include: {
+              Customer: true,
+              products: { include: { Product: true } },
+            },
+          },
         },
       },
     },
@@ -25,6 +31,13 @@ export async function GET(
       name: data.name,
       photoURL: data.photoURL,
       price: data.price,
+      amountOfPurchases: data.budgets.reduce<number>((acc, b) => {
+        return (
+          acc +
+          (b.Budget.products.find((p) => p.productId === data.id)?.quantity ||
+            0)
+        );
+      }, 0),
     };
 
     customers = Array.from(

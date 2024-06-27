@@ -10,6 +10,7 @@ type Product = {
   name: string;
   photoURL: string;
   price: number;
+  amountOfPurchases: number;
 };
 
 type Customer = {

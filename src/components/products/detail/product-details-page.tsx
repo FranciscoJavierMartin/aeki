@@ -41,9 +41,9 @@ export default function ProductDetailsPage({ id }: { id: string }) {
             </button>
             <div className='mt-12 grid w-full grid-cols-2 gap-2'>
               <span className='font-semibold'>Total purchases</span>
-              <span className='text-right'>12</span>
+              <span className='text-right'>{product.amountOfPurchases}</span>
               <span className='font-semibold'>Different customers</span>
-              <span className='text-right'>40</span>
+              <span className='text-right'>{customers.length}</span>
             </div>
           </div>
         </div>
