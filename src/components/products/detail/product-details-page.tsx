@@ -21,17 +21,17 @@ export default function ProductDetailsPage({ id }: { id: string }) {
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
       <div className='flex w-full justify-center md:my-10'>
-        <div className='flex gap-x-7'>
+        <div className='flex flex-col gap-x-7 p-5 md:flex-row'>
           <img
             src={data.photoURL}
             alt={data.name}
-            className='w-3/5 rounded-2xl'
+            className='w-full rounded-2xl md:w-3/5'
           />
-          <div className='flex w-2/5 flex-col'>
-            <h1 className='mb-5 mt-3 text-right text-5xl'>{data.name}</h1>
+          <div className='flex w-full flex-col md:w-2/5'>
+            <h1 className='mb-5 mt-3 text-5xl md:text-right'>{data.name}</h1>
             <span className='mb-2 text-right text-3xl font-light'>{price}</span>
             <button
-              className='text-right'
+              className='md:mt-0 text-center mt-5 md:text-right'
               onClick={() => {
                 navigator.clipboard.writeText(data.id);
                 toast('Product ID copied to clipboard');
