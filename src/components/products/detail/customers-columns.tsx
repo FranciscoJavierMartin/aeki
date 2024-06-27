@@ -15,6 +15,19 @@ export const customerColumns: ColumnDef<Customer>[] = [
     },
   },
   {
+    accessorKey: 'phone',
+    header: () => {
+      return <div className='text-center'>Phone</div>;
+    },
+    cell: ({ row }) => {
+      return (
+        <div className='text-center'>
+          <a href={`tel:${row.original.phone}`}>{row.original.phone}</a>
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'dni',
     header: () => {
       return <div className='text-center'>DNI</div>;
