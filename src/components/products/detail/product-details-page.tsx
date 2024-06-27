@@ -52,6 +52,7 @@ export default function ProductDetailsPage({ id }: { id: string }) {
         </div>
       </div>
       <div className='mb-10 grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
+        {/* TODO: Add buttons to sort asc and desc */}
         <DataTable data={budgets} columns={budgetColumns} />
         <DataTable data={customers} columns={customerColumns} />
       </div>

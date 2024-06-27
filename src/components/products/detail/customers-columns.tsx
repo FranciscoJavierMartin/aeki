@@ -1,10 +1,22 @@
+import { Button } from '@/components/ui/button';
+import SortedIcon from '@/components/ui/sorted-icon';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const customerColumns: ColumnDef<Customer>[] = [
   {
     accessorKey: 'email',
-    header: () => {
-      return <div className='text-center'>Email</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Email
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
     cell: ({ row }) => {
       return (
@@ -16,8 +28,18 @@ export const customerColumns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: 'phone',
-    header: () => {
-      return <div className='text-center'>Phone</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Phone
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
     cell: ({ row }) => {
       return (
@@ -29,8 +51,18 @@ export const customerColumns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: 'dni',
-    header: () => {
-      return <div className='text-center'>DNI</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            DNI
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
     cell: ({ row }) => {
       return (
@@ -42,14 +74,34 @@ export const customerColumns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: 'firstName',
-    header: () => {
-      return <div className='text-center'>First name</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            First name
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
   },
   {
     accessorKey: 'lastName',
-    header: () => {
-      return <div className='text-center'>Last name</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Last name
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
   },
 ];

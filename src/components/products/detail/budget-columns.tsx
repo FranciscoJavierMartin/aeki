@@ -25,8 +25,18 @@ export const budgetColumns: ColumnDef<Budget>[] = [
   },
   {
     accessorKey: 'discountAppliedPercentage',
-    header: () => {
-      return <div className='text-center'>Applied discount</div>;
+    header: ({ column }) => {
+      return (
+        <div className='text-center'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Applied discount
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
     },
     cell: ({ row }) => {
       return (
