@@ -26,7 +26,15 @@ export default function ProductDetailsPage({ id }: { id: string }) {
           <div className='flex flex-col'>
             <h1 className='mb-5 mt-3 text-right text-5xl'>{data.name}</h1>
             <span className='mb-2 text-right text-3xl font-light'>{price}</span>
-            <button className='text-right'>{data.id}</button>
+            <button
+              className='text-right'
+              onClick={() => {
+                navigator.clipboard.writeText(data.id);
+                toast('Product ID copied to clipboard');
+              }}
+            >
+              {data.id}
+            </button>
             <div className='mt-12 grid w-full grid-cols-2 gap-2'>
               <span className='font-semibold'>Total purchases</span>
               <span className='text-right'>12</span>
