@@ -23,4 +23,42 @@ export const budgetColumns: ColumnDef<Budget>[] = [
       return <div className='text-center'>{dueDate.toLocaleDateString()}</div>;
     },
   },
+  {
+    accessorKey: 'discountAppliedPercentage',
+    header: () => {
+      return <div className='text-center'>Applied discount</div>;
+    },
+    cell: ({ row }) => {
+      return (
+        <div className='text-center'>
+          {row.original.discountAppliedPercentage}%
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: 'totalPrice',
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Total price
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const totalPrice = parseFloat(row.getValue('totalPrice'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(totalPrice);
+
+      return <div className='text-right font-medium'>{formatted}</div>;
+    },
+  },
 ];
