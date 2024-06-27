@@ -7,7 +7,7 @@ export async function GET(
 ) {
   let product: Product = {} as Product;
   let customers: Customer[] = [];
-  let budgets: any[]=[]
+  let budgets: Budget[] = [];
   const data = await prismaClient.product.findUnique({
     where: { id: params.id },
     include: {
@@ -36,11 +36,16 @@ export async function GET(
 
     budgets = Array.from(
       data.budgets.reduce(
-        (acc, b) => acc.add(b.Budget.Customer),
-        new Set<Customer>(),
+        (acc, { Budget }) =>
+          acc.add({
+            discountAppliedPercentage: Budget.discountAppliedPercentage,
+            dueDate: Budget.dueDate,
+            totalPrice: Budget.totalPrice,
+          }),
+        new Set<Budget>(),
       ),
     );
   }
 
-  return NextResponse.json({ product, customers });
+  return NextResponse.json({ product, customers, budgets });
 }

@@ -20,3 +20,9 @@ type Customer = {
   phone: string;
   dni: string;
 };
+
+type Budget = {
+  discountAppliedPercentage: number;
+  dueDate: Date;
+  totalPrice: number;
+};
