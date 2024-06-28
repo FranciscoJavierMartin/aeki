@@ -55,7 +55,7 @@ export default function ProductDetailsPage({ id }: { id: string }) {
         <DataTable data={budgets} columns={budgetColumns} />
         <DataTable data={customers} columns={customerColumns} />
       </div>
-      <div className='space-y-10'/>
+      <div className='space-y-10' />
     </div>
   );
 }
