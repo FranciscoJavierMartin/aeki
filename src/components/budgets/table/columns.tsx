@@ -49,8 +49,7 @@ export const columns: ColumnDef<BudgetRow>[] = [
     },
     cell: ({ row }) => {
       const discount = parseFloat(row.getValue('discountAppliedPercentage'));
-
-      return <span>{discount}%</span>;
+      return <div className='text-right'>{discount}%</div>;
     },
   },
   {
