@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:4230/api/budgets
+  url: {{baseUrl}}/budgets
   body: none
   auth: none
 }
 
 vars:post-response {
-  id: res.body.budgets[0].id
+  budgetId: res.body.budgets[0].id
 }
 
 assert {

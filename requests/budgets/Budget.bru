@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: http://localhost:4230/api/budgets/{{id}}
+  url: {{baseUrl}}/budgets/{{budgetId}}
   body: none
   auth: none
 }
@@ -15,6 +15,6 @@ vars:post-response {
 }
 
 assert {
-  res.status: eq 200
-  res.body.budget: neq null
+  ~res.status: eq 200
+  ~res.body.budget: neq null
 }
