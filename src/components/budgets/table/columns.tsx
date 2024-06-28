@@ -37,4 +37,29 @@ export const columns: ColumnDef<BudgetRow>[] = [
       return <span>{discount}%</span>;
     },
   },
+  {
+    accessorKey: 'totalPrice',
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Total price
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const price = parseFloat(row.getValue('totalPrice'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(price);
+
+      return <div className='text-right'>{formatted}</div>;
+    },
+  },
 ];
