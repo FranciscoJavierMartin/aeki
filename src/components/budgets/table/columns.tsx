@@ -2,6 +2,17 @@ import { ColumnDef } from '@tanstack/react-table';
 import { BudgetRow } from '@/types/budget';
 import { Button } from '@/components/ui/button';
 import SortedIcon from '@/components/ui/sorted-icon';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { toast } from 'sonner';
+import Link from 'next/link';
 
 export const columns: ColumnDef<BudgetRow>[] = [
   {
@@ -75,6 +86,38 @@ export const columns: ColumnDef<BudgetRow>[] = [
       }).format(price);
 
       return <div className='text-right'>{formatted}</div>;
+    },
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => {
+      const product = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant='ghost' className='h-8 w-8 p-0'>
+              <span className='sr-only'>Open menu</span>
+              <DotsHorizontalIcon className='h-4 w-4' />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align='end'>
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => {
+                navigator.clipboard.writeText(product.id);
+                toast('Budget ID copied to clipboard');
+              }}
+            >
+              Copy budget ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link href={`/budgets/${product.id}`}>View budget</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
     },
   },
 ];
