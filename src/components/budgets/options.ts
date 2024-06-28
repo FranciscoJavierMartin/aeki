@@ -13,3 +13,18 @@ export const budgetsOptions = queryOptions({
   queryKey: ['budgets'],
   queryFn: getBudgets,
 });
+
+async function getBudget(id: string) {
+  const data = await fetch(`http://localhost:4230/api/budgets/${id}`).then(
+    (res) => res.json(),
+  );
+
+  return data;
+}
+
+export function getBudgetOptions(id: string) {
+  return queryOptions({
+    queryKey: [`budget_${id}`],
+    queryFn: async () => await getBudget(id),
+  });
+}
