@@ -49,4 +49,10 @@ tests {
     expect(budgets[0].customerId).to.be.a('string');
     expect(budgets[0].customerId).to.not.equal('');
   })
+  
+  test('budgets contains customerName in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].customerName).to.be.a('string');
+    expect(budgets[0].customerName).to.not.equal('');
+  })
 }

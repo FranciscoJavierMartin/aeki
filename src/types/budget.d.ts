@@ -4,4 +4,5 @@ export type BudgetRow = {
   discountAppliedPercentage: number;
   dueDate: string;
   customerId: string;
+  customerName: string;
 };

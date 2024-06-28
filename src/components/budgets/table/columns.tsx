@@ -19,6 +19,22 @@ export const columns: ColumnDef<BudgetRow>[] = [
     },
   },
   {
+    accessorKey: 'customerName',
+    header: ({ column }) => {
+      return (
+        <div className='text-left'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Customer
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'discountAppliedPercentage',
     header: ({ column }) => {
       return (
