@@ -1,6 +1,7 @@
 'use client';
 import { PropsWithChildren } from 'react';
 import Link, { LinkProps } from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 type NavLinkProps = PropsWithChildren<
@@ -14,7 +15,7 @@ export default function NavLink({
   ...props
 }: NavLinkProps) {
   let toPathname: string = props.href.toString() ?? '';
-  let locationPathname: string = window.location.pathname;
+  let locationPathname: string = usePathname();
 
   if (toPathname.startsWith('/')) {
     toPathname = toPathname.substring(1);
