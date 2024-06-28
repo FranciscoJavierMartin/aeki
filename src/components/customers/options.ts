@@ -1,5 +1,7 @@
 import type { Customer, CustomerRow } from '@/types/customer';
 import { queryOptions } from '@tanstack/react-query';
+import { BudgetWithAmount } from '@/components/customers/detail/budget-columns';
+import { CustomerProductItem } from '@/components/customers/detail/product-columns';
 
 async function getCustomers(): Promise<CustomerRow[]> {
   const { customers } = await fetch('http://localhost:4230/api/customers').then(
@@ -15,11 +17,15 @@ export const customersOptions = queryOptions({
 });
 
 async function getCustomer(id: string) {
-  const { customer } = await fetch(
-    `http://localhost:4230/api/customers/${id}`,
-  ).then((res) => res.json());
+  const data = await fetch(`http://localhost:4230/api/customers/${id}`).then(
+    (res) => res.json(),
+  );
 
-  return customer as Customer;
+  return data as {
+    customer: Customer;
+    budgets: BudgetWithAmount[];
+    products: CustomerProductItem[];
+  };
 }
 
 export function getCustomerOptions(id: string) {

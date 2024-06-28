@@ -2,39 +2,15 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCustomerOptions } from '@/components/customers/options';
 import { DataTable } from '@/components/ui/data-table';
-import {
-  productColumns,
-  type CustomerProductItem,
-} from '@/components/customers/detail/product-columns';
-import {
-  budgetColumns,
-  type BudgetWithAmount,
-} from '@/components/customers/detail/budget-columns';
+import { productColumns } from '@/components/customers/detail/product-columns';
+import { budgetColumns } from '@/components/customers/detail/budget-columns';
 
 export default function CustomerDetailsPage({ id }: { id: string }) {
-  const { data } = useSuspenseQuery(getCustomerOptions(id));
+  const {
+    data: { customer, budgets, products },
+  } = useSuspenseQuery(getCustomerOptions(id));
 
-  // TODO: Move to API
-  const products: CustomerProductItem[] = data.budgets.reduce<
-    CustomerProductItem[]
-  >((acc, b) => {
-    b.products.forEach((product) => {
-      const index = acc.findIndex((p) => p.id === product.Product.id);
-
-      if (index > -1) {
-        acc[index].quantity += product.quantity;
-      } else {
-        acc.push({ ...product.Product, quantity: product.quantity });
-      }
-    });
-
-    return acc;
-  }, []);
-
-  const budgets: BudgetWithAmount[] = data.budgets.map((budget) => ({
-    ...budget,
-    amount: budget.products.length,
-  }));
+  console.log({ customer, budgets, products });
 
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
@@ -42,27 +18,27 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
         <div className='flex flex-col items-center gap-5 p-5 max-md:w-full md:flex-row md:rounded-2xl md:bg-slate-100 dark:md:bg-slate-800'>
           <div className='flex size-40 items-center justify-center rounded-full bg-slate-900 text-8xl text-white dark:bg-slate-700'>
             <span>
-              {`${data.firstName.charAt(0)}${data.lastName.charAt(0)}`}
+              {`${customer.firstName.charAt(0)}${customer.lastName.charAt(0)}`}
             </span>
           </div>
           <div className='flex flex-col justify-center text-center md:text-start'>
             <h1 className='text-5xl'>
-              {data.firstName} {data.lastName}
+              {customer.firstName} {customer.lastName}
             </h1>
             <a
-              href={`mailto:${data.email}`}
+              href={`mailto:${customer.email}`}
               className='mb-2 font-normal text-slate-500 dark:text-slate-100'
             >
-              {data.email}
+              {customer.email}
             </a>
             <a
-              href={`tel:${data.phone}`}
+              href={`tel:${customer.phone}`}
               className='font-normal text-slate-500 dark:text-slate-100'
             >
-              {data.phone}
+              {customer.phone}
             </a>
             <div className='font-normal text-slate-500 dark:text-slate-100'>
-              {data.dni}
+              {customer.dni}
             </div>
           </div>
         </div>
