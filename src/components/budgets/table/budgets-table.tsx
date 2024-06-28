@@ -12,7 +12,8 @@ export default function BudgetsTable() {
     <DataTable
       columns={columns}
       data={data}
-      inputPlaceholder='Filter by email, first name, last name, dni...'
+      inputPlaceholder='Filter by customer'
+      columnName='customerName'
     />
   );
 }
