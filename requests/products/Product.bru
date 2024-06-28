@@ -31,5 +31,6 @@ tests {
   test('product contains price', () => {
     const { product } = res.getBody();
     expect(product.price).to.be.a('number');
+    expect(product.price).to.gt(0);
   })
 }
