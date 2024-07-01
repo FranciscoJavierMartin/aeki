@@ -1,8 +1,9 @@
+'use client';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { getBudgetOptions } from '../options';
+import { getBudgetOptions } from '@/components/budgets/options';
 
 export default function BudgetDetailsPage({ id }: { id: string }) {
   const { data } = useSuspenseQuery(getBudgetOptions(id));
 
-  return <div></div>;
+  return <pre>{JSON.stringify(data)}</pre>;
 }

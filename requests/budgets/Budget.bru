@@ -10,11 +10,7 @@ get {
   auth: none
 }
 
-vars:post-response {
-  id: res.body.budgets[0].id
-}
-
 assert {
-  ~res.status: eq 200
-  ~res.body.budget: neq null
+  res.status: eq 200
+  res.body.budget: neq null
 }
