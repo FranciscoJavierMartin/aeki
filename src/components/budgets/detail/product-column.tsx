@@ -1,10 +1,21 @@
 import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import type { Product } from '@/types/budget';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import SortedIcon from '@/components/ui/sorted-icon';
 import MinusIcon from '@/components/icons/minus';
 import PlusIcon from '@/components/icons/plus';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import TrashIcon from '@/components/icons/trash';
 
 export const productColumns: ColumnDef<Product>[] = [
   {
@@ -55,7 +66,7 @@ export const productColumns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
       const quantity = parseFloat(row.getValue('quantity'));
       return (
-        <div className='flex gap-x-3 items-center justify-center'>
+        <div className='flex items-center justify-center gap-x-3'>
           <button>
             <MinusIcon />
           </button>
@@ -116,6 +127,35 @@ export const productColumns: ColumnDef<Product>[] = [
       }).format(amount);
 
       return <div className='text-right'>{formatted}</div>;
+    },
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => {
+      const product = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <div className='flex w-full items-center justify-center'>
+              <Button variant='ghost' className='h-8 w-8 p-0'>
+                <span className='sr-only'>Open menu</span>
+                <DotsHorizontalIcon className='h-4 w-4' />
+              </Button>
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align='end'>
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem onClick={() => {}}>
+              <TrashIcon /> Remove product from budget
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link href={`/products/${product.productId}`}>View product</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
     },
   },
 ];
