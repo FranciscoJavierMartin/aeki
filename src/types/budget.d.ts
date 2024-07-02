@@ -14,13 +14,10 @@ export interface BudgetResponse {
 }
 
 export interface Budget {
-  id: string;
-  totalPrice: number;
   discountAppliedPercentage: number;
   dueDate: string;
-  customerId: string;
-  Customer: Customer;
-  products: Product[];
+  totalPrice: number;
+  id: string;
 }
 
 export interface Customer {
@@ -33,16 +30,9 @@ export interface Customer {
 }
 
 export interface Product {
-  productId: string;
-  budgetId: string;
-  quantity: number;
   pricePerUnit: number;
-  Product: ProductData;
-}
-
-export interface ProductData {
-  id: string;
+  quantity: number;
   name: string;
+  productId: string;
   photoURL: string;
-  price: number;
 }

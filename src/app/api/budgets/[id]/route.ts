@@ -5,11 +5,7 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const {
-    products = [],
-    Customer,
-    ...budget
-  } = await prismaClient.budget.findUnique({
+  const data = await prismaClient.budget.findUnique({
     where: { id: params.id },
     include: {
       Customer: true,
@@ -21,5 +17,23 @@ export async function GET(
     },
   });
 
-  return NextResponse.json({ budget, products, customer: Customer });
+  const productsMapped =
+    data?.products.map(({ Product, pricePerUnit, quantity }) => ({
+      pricePerUnit,
+      quantity,
+      name: Product.name,
+      productId: Product.id,
+      photoURL: Product.photoURL,
+    })) || [];
+
+  return NextResponse.json({
+    budget: {
+      discountAppliedPercentage: data?.discountAppliedPercentage,
+      dueDate: data?.dueDate,
+      totalPrice: data?.totalPrice,
+      id: data?.id,
+    },
+    products: productsMapped,
+    customer: data?.Customer,
+  });
 }
