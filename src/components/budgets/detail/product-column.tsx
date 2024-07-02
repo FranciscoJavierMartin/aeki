@@ -146,8 +146,11 @@ export const productColumns: ColumnDef<Product>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => {}}>
-              <TrashIcon /> Remove product from budget
+            <DropdownMenuItem onClick={() => {}} className='group flex gap-x-2'>
+              <TrashIcon />
+              <span className='group-hover:text-red-600'>
+                Remove product from budget
+              </span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
