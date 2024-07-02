@@ -3,6 +3,8 @@ import type { Product } from '@/types/budget';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import SortedIcon from '@/components/ui/sorted-icon';
+import MinusIcon from '@/components/icons/minus';
+import PlusIcon from '@/components/icons/plus';
 
 export const productColumns: ColumnDef<Product>[] = [
   {
@@ -39,7 +41,7 @@ export const productColumns: ColumnDef<Product>[] = [
     accessorKey: 'quantity',
     header: ({ column }) => {
       return (
-        <div className='text-right'>
+        <div className='text-center'>
           <Button
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
@@ -52,7 +54,17 @@ export const productColumns: ColumnDef<Product>[] = [
     },
     cell: ({ row }) => {
       const quantity = parseFloat(row.getValue('quantity'));
-      return <div className='text-center md:text-right'>{quantity}</div>;
+      return (
+        <div className='flex gap-x-3 items-center justify-center'>
+          <button>
+            <MinusIcon />
+          </button>
+          <div className='text-center md:text-right'>{quantity}</div>
+          <button>
+            <PlusIcon />
+          </button>
+        </div>
+      );
     },
   },
   {

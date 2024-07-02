@@ -9,7 +9,7 @@ export default function BudgetDetailsPage({ id }: { id: string }) {
 
   return (
     <div>
-      <div className='mb-10 grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-2'>
+      <div className='mb-30 w-full px-3'>
         <DataTable data={data.products} columns={productColumns} />
       </div>
     </div>
