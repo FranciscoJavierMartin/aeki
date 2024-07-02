@@ -35,4 +35,5 @@ export interface Product {
   name: string;
   productId: string;
   photoURL: string;
+  totalPrice: number;
 }

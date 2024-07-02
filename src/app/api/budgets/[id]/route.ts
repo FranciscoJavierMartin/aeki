@@ -24,6 +24,7 @@ export async function GET(
       name: Product.name,
       productId: Product.id,
       photoURL: Product.photoURL,
+      totalPrice: pricePerUnit * quantity,
     })) || [];
 
   return NextResponse.json({

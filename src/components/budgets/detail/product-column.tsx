@@ -80,4 +80,30 @@ export const productColumns: ColumnDef<Product>[] = [
       return <div className='text-right'>{formatted}</div>;
     },
   },
+  {
+    accessorKey: 'totalPrice',
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Total price
+            <SortedIcon isSorted={column.getIsSorted()} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue('totalPrice'));
+
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount);
+
+      return <div className='text-right'>{formatted}</div>;
+    },
+  },
 ];
