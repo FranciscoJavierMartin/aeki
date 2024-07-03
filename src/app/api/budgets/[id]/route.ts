@@ -48,12 +48,12 @@ export async function DELETE(
 
   const budget = await prismaClient.budget.findUnique({
     where: { id: params.id },
-    include: { products: { include: { Product: true, Budget: true } } },
+    include: { products: true },
   });
 
   if (budget) {
     const newProductList = budget.products.filter(
-      (p) => p.productId === productId,
+      (p) => p.productId !== productId,
     );
     const newTotalPrice = newProductList.reduce(
       (acc, p) => p.quantity * p.pricePerUnit + acc,
