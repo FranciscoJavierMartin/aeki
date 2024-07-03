@@ -29,9 +29,9 @@ export default function BudgetDetailsPage({ id }: { id: string }) {
             <span className='text-right'>
               {data.budget.discountAppliedPercentage}%
             </span>
-            <hr className='col-span-2 my-5 border border-b border-slate-500' />
             {data.customer && (
               <>
+                <hr className='col-span-2 my-5 border border-b border-slate-500' />
                 <span className='font-semibold'>Customer</span>
                 <span className='text-right'>{`${data.customer.lastName}, ${data.customer.firstName}`}</span>
                 <span className='font-semibold'>Email</span>

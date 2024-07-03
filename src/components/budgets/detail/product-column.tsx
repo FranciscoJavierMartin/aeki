@@ -67,11 +67,11 @@ export const productColumns: ColumnDef<Product>[] = [
       const quantity = parseFloat(row.getValue('quantity'));
       return (
         <div className='flex items-center justify-center gap-x-3'>
-          <button className='rounded-md bg-slate-500 transition hover:scale-110'>
+          <button className='rounded-md bg-slate-100 transition hover:scale-110 dark:bg-slate-500'>
             <MinusIcon />
           </button>
           <div className='text-center md:text-right'>{quantity}</div>
-          <button className='rounded-md bg-slate-500 transition hover:scale-110'>
+          <button className='rounded-md bg-slate-100 transition hover:scale-110 dark:bg-slate-500'>
             <PlusIcon />
           </button>
         </div>
