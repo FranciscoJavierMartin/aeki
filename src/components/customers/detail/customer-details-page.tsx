@@ -10,8 +10,6 @@ export default function CustomerDetailsPage({ id }: { id: string }) {
     data: { customer, budgets, products },
   } = useSuspenseQuery(getCustomerOptions(id));
 
-  console.log({ customer, budgets, products });
-
   return (
     <div className='flex w-full flex-col gap-10 md:p-3'>
       <div className='flex w-full justify-center md:my-10'>

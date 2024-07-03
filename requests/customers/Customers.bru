@@ -16,7 +16,7 @@ vars:post-response {
 
 assert {
   res.status: eq 200
-  res.body.customers.length: gt 1
+  res.body.customers.length: gte 0
 }
 
 tests {

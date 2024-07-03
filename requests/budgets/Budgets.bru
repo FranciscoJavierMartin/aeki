@@ -1,0 +1,58 @@
+meta {
+  name: Budgets
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/budgets
+  body: none
+  auth: none
+}
+
+vars:post-response {
+  budgetId: res.body.budgets[0].id
+}
+
+assert {
+  res.status: eq 200
+  res.body.budgets.length: gte 0
+}
+
+tests {
+  test('budgets contains id in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].id).to.be.a('string');
+    expect(budgets[0].id).to.not.equal('');
+  })
+  
+  test('budgets contains totalPrice in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].totalPrice).to.be.a('number');
+    expect(budgets[0].totalPrice).to.gt(0);
+  })
+  
+  test('budgets contains discountAppliedPercentage in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].discountAppliedPercentage).to.be.a('number');
+    expect(budgets[0].discountAppliedPercentage).to.gte(0);
+  })
+  
+  test('budgets contains dueDate in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].dueDate).to.be.a('string');
+    expect(budgets[0].dueDate).to.not.equal('');
+  })
+  
+  test('budgets contains customerId in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].customerId).to.be.a('string');
+    expect(budgets[0].customerId).to.not.equal('');
+  })
+  
+  test('budgets contains customerName in item', () => {
+    const { budgets } = res.getBody();
+    expect(budgets[0].customerName).to.be.a('string');
+    expect(budgets[0].customerName).to.not.equal('');
+  })
+}
