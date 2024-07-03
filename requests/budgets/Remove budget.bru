@@ -1,0 +1,17 @@
+meta {
+  name: Remove budget
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/budgets/{{budgetId}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "productId": "clx8p2jmf0021ez0z2is8bgp1"
+  }
+}

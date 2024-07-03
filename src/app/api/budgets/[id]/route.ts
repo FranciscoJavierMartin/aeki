@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prismaClient } from '@/lib/utils/prisma-client';
+import addDays from '@/lib/utils/add-days';
 
 export async function GET(
   request: Request,
@@ -38,3 +39,46 @@ export async function GET(
     customer: data?.Customer,
   });
 }
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  const { productId } = await request.json();
+
+  const budget = await prismaClient.budget.findUnique({
+    where: { id: params.id },
+    include: { products: { include: { Product: true, Budget: true } } },
+  });
+
+  if (budget) {
+    const newProductList = budget.products.filter(
+      (p) => p.productId === productId,
+    );
+    const newTotalPrice = newProductList.reduce(
+      (acc, p) => p.quantity * p.pricePerUnit + acc,
+      0,
+    );
+
+    await prismaClient.budget.update({
+      where: {
+        id: params.id,
+      },
+      data: {
+        dueDate: addDays(new Date(), 15),
+        totalPrice: newTotalPrice,
+      },
+    });
+
+    await prismaClient.productsOnBudgets.deleteMany({
+      where: {
+        productId,
+        budgetId: params.id,
+      },
+    });
+  }
+
+  return Response.json({ message: 'Success' });
+}
+
+// Practical Plastic Car
