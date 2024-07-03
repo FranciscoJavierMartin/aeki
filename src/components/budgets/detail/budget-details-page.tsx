@@ -29,7 +29,7 @@ export default function BudgetDetailsPage({ id }: { id: string }) {
             <span className='text-right'>
               {data.budget.discountAppliedPercentage}%
             </span>
-            <hr className='col-span-2 border border-b border-slate-500 my-5' />
+            <hr className='col-span-2 my-5 border border-b border-slate-500' />
             {data.customer && (
               <>
                 <span className='font-semibold'>Customer</span>
