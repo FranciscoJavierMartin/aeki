@@ -9,9 +9,9 @@ export default function BudgetDetailsPage({ id }: { id: string }) {
 
   return (
     <div>
-      <div className='flex w-full gap-x-5'>
+      <div className='mb-16 mt-10 flex w-full justify-center gap-x-5'>
         {data.budget && (
-          <section className='grid w-1/2 grid-cols-[2fr_4fr] gap-x-4 gap-y-3 rounded-3xl bg-slate-100 p-5 dark:bg-slate-800'>
+          <section className='grid w-full grid-cols-[2fr_4fr] gap-x-4 gap-y-3 rounded-3xl bg-slate-100 p-5 dark:bg-slate-800 md:w-1/2'>
             <span className='font-semibold'>ID</span>
             <span className='text-right'>{data.budget.id}</span>
             <span className='font-semibold'>Due date</span>
@@ -29,6 +29,7 @@ export default function BudgetDetailsPage({ id }: { id: string }) {
             <span className='text-right'>
               {data.budget.discountAppliedPercentage}%
             </span>
+            <hr className='col-span-2 border border-b border-slate-500 my-5' />
             {data.customer && (
               <>
                 <span className='font-semibold'>Customer</span>
