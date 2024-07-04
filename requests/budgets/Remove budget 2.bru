@@ -1,11 +1,11 @@
 meta {
-  name: Remove budget
+  name: Remove budget 2
   type: http
-  seq: 3
+  seq: 4
 }
 
 delete {
-  url: {{baseUrl}}/budgets/{{budgetId}}
+  url: {{baseUrl}}/budgets/{{budgetId}}/{{productIdToDelete}}
   body: json
   auth: none
 }

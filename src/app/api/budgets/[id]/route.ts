@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prismaClient } from '@/lib/utils/prisma-client';
 import addDays from '@/lib/utils/add-days';
 
@@ -40,10 +40,11 @@ export async function GET(
   });
 }
 
-export async function DELETE(
+/*export async function DELETE(
   request: Request,
   { params }: { params: { id: string } },
 ) {
+  console.log('DELETE');
   const { productId } = await request.json();
 
   const budget = await prismaClient.budget.findUnique({
@@ -79,4 +80,33 @@ export async function DELETE(
   }
 
   return Response.json({ message: 'Success' });
+}*/
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  // requesting data from the front-end
+  const body = (await request.json()) || '{}';
+  console.log(body, params);
+  console.log(typeof body);
+  // storing user_id in the id var
+  //     const id=req.user_id;
+  // // creating a db client
+  //     const client = await db.connect();
+  //     try{
+  //         if(id){
+  // // deleting user based on its id
+  //             const resp = await client.sql`DELETE FROM users WHERE id = ${id};`;
+  //             return NextResponse.json({resp:resp},{status:200})
+  //         }
+  //         else{
+  //         throw new Error("Error Deletion Record!")
+  //         }
+  //     }
+  //     catch(error){
+  //         return  NextResponse.json({"message":(error as {message:string}).message},{status:404})
+  //     }
+
+  return NextResponse.json({ message: 'Success', body });
 }

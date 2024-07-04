@@ -9,8 +9,9 @@ async function removeProductServer(
   await fetch(`http://localhost:4230/api/budgets/${budgetId}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
+      'content-type': 'application/json',
     },
+    cache: 'no-cache',
     body: JSON.stringify({ productId }),
   });
 }

@@ -10,6 +10,10 @@ get {
   auth: none
 }
 
+vars:post-response {
+  productIdToDelete: res.body.products[0].productId
+}
+
 assert {
   res.status: eq 200
   res.body.budget: neq null
