@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import TrashIcon from '@/components/icons/trash';
+import useRemoveProduct from './use-remove-product';
 
 export const productColumns: ColumnDef<Product>[] = [
   {
@@ -133,6 +134,8 @@ export const productColumns: ColumnDef<Product>[] = [
     id: 'actions',
     cell: ({ row }) => {
       const product = row.original;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const removeProduct = useRemoveProduct();
 
       return (
         <DropdownMenu>
@@ -146,7 +149,12 @@ export const productColumns: ColumnDef<Product>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => {}} className='group flex gap-x-2'>
+            <DropdownMenuItem
+              className='group flex gap-x-2'
+              onClick={() => {
+                removeProduct.removeProduct('', product.productId);
+              }}
+            >
               <TrashIcon />
               <span className='group-hover:text-red-600'>
                 Remove product from budget
