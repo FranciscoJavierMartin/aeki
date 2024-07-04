@@ -1,5 +1,6 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { BudgetResponse } from '@/types/budget';
 
 async function removeProductServer(
   budgetId: string,
@@ -7,20 +8,57 @@ async function removeProductServer(
 ): Promise<void> {
   await fetch(`http://localhost:4230/api/budgets/${budgetId}`, {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({ productId }),
   });
 }
 
 export default function useRemoveProduct() {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: async (data: { budgetId: string; productId: string }) => {
       await removeProductServer(data.budgetId, data.productId);
     },
-    onError: () => {
+    onMutate: async (data) => {
+      await queryClient.cancelQueries({
+        queryKey: [`budget_${data.budgetId}`],
+      });
+
+      const previousBudget = queryClient.getQueryData([
+        `budget_${data.budgetId}`,
+      ]);
+
+      queryClient.setQueryData<BudgetResponse>(
+        [`budget_${data.budgetId}`],
+        (old) =>
+          old
+            ? {
+                ...old,
+                products: old.products.filter(
+                  (p) => p.productId !== data.productId,
+                ),
+              }
+            : old,
+      );
+
+      return {
+        previousBudget,
+      };
+    },
+    onError: (error, data, context) => {
+      queryClient.setQueryData(
+        [`budget_${data.budgetId}`],
+        context?.previousBudget,
+      );
       toast('Error removing product from budget');
     },
-    onSuccess: () => {
-      toast('Removed product from budget');
+    onSettled: (data, error, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [`budget_${variables.budgetId}`],
+      });
     },
   });
 

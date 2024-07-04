@@ -60,25 +60,23 @@ export async function DELETE(
       0,
     );
 
-    await prismaClient.budget.update({
-      where: {
-        id: params.id,
-      },
-      data: {
-        dueDate: addDays(new Date(), 15),
-        totalPrice: newTotalPrice,
-      },
-    });
+    // await prismaClient.budget.update({
+    //   where: {
+    //     id: params.id,
+    //   },
+    //   data: {
+    //     dueDate: addDays(new Date(), 15),
+    //     totalPrice: newTotalPrice,
+    //   },
+    // });
 
-    await prismaClient.productsOnBudgets.deleteMany({
-      where: {
-        productId,
-        budgetId: params.id,
-      },
-    });
+    // await prismaClient.productsOnBudgets.deleteMany({
+    //   where: {
+    //     productId,
+    //     budgetId: params.id,
+    //   },
+    // });
   }
 
   return Response.json({ message: 'Success' });
 }
-
-// Practical Plastic Car
